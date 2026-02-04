@@ -4,7 +4,7 @@ let pois = [];
 
 export async function loadPOIs() {
     try {
-        const res = await fetch('/djerba.geojson');
+        const res = await fetch(import.meta.env.BASE_URL + 'djerba.geojson');
         const data = await res.json();
         pois = data.features.map(f => ({
             name: f.properties["Nom du site FR"] || "Sans nom",
