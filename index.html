@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Djerba Photo Manager</title>
+  </head>
+  <body>
+    <div id="app">
+        <div class="top-bar">
+            <strong>Djerba Pro</strong>
+            <input type="file" id="photoInput" multiple accept="image/*">
+            <button id="groupBtn">Grouper par POI : OFF</button>
+        </div>
+
+        <div id="main-container">
+            <div id="default-gallery" class="gallery"></div>
+        </div>
+
+        <div class="bottom-controls">
+            <button class="btn-primary" id="compareBtn">Comparer (max 4)</button>
+            <button class="btn-save" id="saveBtn">Enregistrer Tout</button>
+            <button class="btn-share" id="shareBtn">Partager la sélection</button>
+        </div>
+
+        <div id="compare-modal">
+            <span class="close-compare">&times;</span>
+            <div id="compare-grid"></div>
+        </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
