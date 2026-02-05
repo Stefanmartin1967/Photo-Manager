@@ -4,62 +4,89 @@ import * as POIManager from './modules/poiManager.js'
 import * as PhotoManager from './modules/photoManager.js'
 import * as UIManager from './modules/uiManager.js'
 
-// 1. Chargement des POIs
-POIManager.loadPOIs();
+(async () => {
+    // 1. Chargement des POIs
+    await POIManager.loadPOIs();
 
-// 2. Initialisation UI et Callbacks
-UIManager.initGallery('default-gallery', {
-    onReorder: (newOrderIds) => {
-        PhotoManager.reorderPhotos(newOrderIds);
-    },
-    onDelete: (id) => {
-        PhotoManager.removePhoto(id);
-    },
-    getPhotos: () => PhotoManager.getPhotos()
-});
-
-// 3. Gestion des photos (Input)
-document.getElementById('photoInput').addEventListener('change', async (e) => {
-    const files = Array.from(e.target.files);
-    
-    for (const file of files) {
-        // Lecture GPS avec exifr
-        let coords = { latitude: null, longitude: null };
-        try {
-            coords = await exifr.gps(file) || coords;
-        } catch (err) {
-            console.warn("Pas de données GPS pour", file.name);
+    // 2. Initialisation UI
+    UIManager.initGallery('default-gallery', {
+        onMove: (photoId, targetGroupId, newIndex) => {
+            PhotoManager.movePhoto(photoId, targetGroupId, newIndex);
+            UIManager.updateUI(PhotoManager.getGroups());
+        },
+        onRenameGroup: (groupId, newName) => {
+            PhotoManager.renameGroup(groupId, newName);
+            UIManager.updateUI(PhotoManager.getGroups());
+        },
+        onRenamePhoto: (photoId, newName) => {
+            PhotoManager.renamePhoto(photoId, newName);
+            UIManager.updateUI(PhotoManager.getGroups());
+        },
+        onExtract: (photoId) => {
+            PhotoManager.extractToTrajet(photoId);
+            UIManager.updateUI(PhotoManager.getGroups());
+        },
+        onDelete: (photoId) => {
+            PhotoManager.removePhoto(photoId);
+            UIManager.updateUI(PhotoManager.getGroups());
         }
+    });
 
-        const match = POIManager.findNearestPOI(coords.latitude, coords.longitude);
-        
-        // Création de l'objet photo (State)
-        const photoObj = PhotoManager.createPhotoObject(file, match ? match.name : null);
-        
-        PhotoManager.addPhoto(photoObj);
+    // 3. Gestion des photos (Input)
+    const photoInput = document.getElementById('photoInput');
+    if (photoInput) {
+        photoInput.addEventListener('change', async (e) => {
+            const files = Array.from(e.target.files);
+            const newPhotos = [];
 
-        // Ajout à l'UI
-        UIManager.addPhotoCard(photoObj, {
-            onDelete: (id) => PhotoManager.removePhoto(id),
-            onReorder: (ids) => PhotoManager.reorderPhotos(ids),
-            getPhotos: () => PhotoManager.getPhotos()
+            for (const file of files) {
+                let date = null;
+                let lat = null;
+                let lon = null;
+
+                try {
+                    const data = await exifr.parse(file);
+                    if (data) {
+                        date = data.DateTimeOriginal || data.CreateDate || null;
+                        lat = data.latitude;
+                        lon = data.longitude;
+                    }
+                } catch (err) {
+                    console.warn("Pas de métadonnées pour", file.name);
+                }
+
+                const photoObj = PhotoManager.createPhotoObject(file, date, lat, lon);
+                newPhotos.push(photoObj);
+            }
+
+            PhotoManager.addPhotos(newPhotos, POIManager.getPois());
+            UIManager.updateUI(PhotoManager.getGroups());
+
+            e.target.value = ''; // Reset input
         });
     }
-    // Mise à jour globale des noms
-    UIManager.updatePhotoNames(PhotoManager.getPhotos());
-});
 
-// Actions des boutons
-document.getElementById('saveBtn').onclick = () => {
-    UIManager.triggerDownload();
-};
+    // Actions des boutons
+    const saveBtn = document.getElementById('saveBtn');
+    if (saveBtn) {
+        saveBtn.onclick = () => {
+            UIManager.triggerDownload();
+        };
+    }
 
-document.getElementById('compareBtn').onclick = () => {
-    const selected = UIManager.getSelectedImages();
-    if (selected.length < 2 || selected.length > 4) return alert("Sélectionne entre 2 et 4 photos pour comparer");
-    UIManager.showCompareModal(selected);
-};
+    const compareBtn = document.getElementById('compareBtn');
+    if (compareBtn) {
+        compareBtn.onclick = () => {
+            const selected = UIManager.getSelectedImages();
+            if (selected.length < 2 || selected.length > 4) return alert("Sélectionne entre 2 et 4 photos pour comparer");
+            UIManager.showCompareModal(selected);
+        };
+    }
 
-document.querySelector('.close-compare').onclick = () => {
-    UIManager.closeCompareModal();
-};
+    const closeCompare = document.querySelector('.close-compare');
+    if (closeCompare) {
+        closeCompare.onclick = () => {
+            UIManager.closeCompareModal();
+        };
+    }
+})();

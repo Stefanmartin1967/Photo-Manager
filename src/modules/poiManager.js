@@ -24,3 +24,7 @@ export function findNearestPOI(lat, lon) {
     });
     return nearest;
 }
+
+export function getPois() {
+    return pois;
+}

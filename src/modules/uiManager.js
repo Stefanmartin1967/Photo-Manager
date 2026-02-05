@@ -1,81 +1,125 @@
 import Sortable from 'sortablejs';
 
 let galleryElement = null;
+let globalCallbacks = {};
 
 export function initGallery(elementId, callbacks) {
     galleryElement = document.getElementById(elementId);
+    globalCallbacks = callbacks;
+}
 
-    new Sortable(galleryElement, {
-        animation: 150,
-        ghostClass: 'sortable-ghost',
-        onEnd: () => {
-             const newOrderIds = Array.from(galleryElement.children).map(child => child.id);
-             if (callbacks.onReorder) callbacks.onReorder(newOrderIds);
-             updatePhotoNames(callbacks.getPhotos());
-        }
+export function renderGallery(groups) {
+    galleryElement.innerHTML = '';
+
+    groups.forEach(group => {
+        const groupEl = document.createElement('div');
+        groupEl.className = 'group-section';
+        groupEl.dataset.groupId = group.id;
+
+        // Header
+        const header = document.createElement('div');
+        header.className = 'group-header';
+
+        const title = document.createElement('span');
+        title.className = 'group-title';
+        title.innerText = group.displayName;
+        title.contentEditable = true;
+        title.spellcheck = false;
+
+        const handleRename = () => {
+             let text = title.innerText.trim();
+             const match = text.match(/^\d+\s*-\s*(.*)/);
+             const cleanName = match ? match[1] : text;
+
+             if (cleanName !== group.customName && cleanName !== group.displayName) {
+                 globalCallbacks.onRenameGroup(group.id, cleanName);
+             }
+        };
+
+        title.onblur = handleRename;
+        title.onkeydown = (e) => {
+            if(e.key === 'Enter') {
+                e.preventDefault();
+                title.blur();
+            }
+        };
+
+        header.appendChild(title);
+        groupEl.appendChild(header);
+
+        // List
+        const list = document.createElement('div');
+        list.className = 'group-photos';
+        list.dataset.groupId = group.id;
+
+        group.photos.forEach(photo => {
+            const card = createPhotoCard(photo);
+            list.appendChild(card);
+        });
+
+        // Sortable
+        new Sortable(list, {
+            group: 'shared-gallery',
+            animation: 150,
+            ghostClass: 'sortable-ghost',
+            delay: 100,
+            delayOnTouchOnly: true,
+            onEnd: (evt) => {
+                if (!evt.to || (evt.from === evt.to && evt.oldIndex === evt.newIndex)) return;
+
+                const photoId = evt.item.id;
+                const targetGroupId = evt.to.dataset.groupId;
+                const newIndex = evt.newIndex;
+
+                globalCallbacks.onMove(photoId, targetGroupId, newIndex);
+            }
+        });
+
+        groupEl.appendChild(list);
+        galleryElement.appendChild(groupEl);
     });
 }
 
-export function addPhotoCard(photo, callbacks) {
+function createPhotoCard(photo) {
     const div = document.createElement('div');
     div.className = 'photo-card';
     div.id = photo.id;
+
     div.innerHTML = `
-        <button class="delete-btn">×</button>
-        <img src="${photo.dataUrl}">
-        <div class="photo-info">Calcul...</div>
-        <div class="arrows">
-            <span class="arrow-btn" data-dir="-1">◀</span>
-            <span class="arrow-btn" data-dir="1">▶</span>
+        <div class="card-controls">
+            <button class="extract-btn" title="Extraire vers Trajet">T</button>
+            <button class="delete-btn" title="Supprimer">×</button>
         </div>
+        <img src="${photo.dataUrl}">
+        <div class="photo-info" contenteditable="true" spellcheck="false">${photo.finalName}</div>
     `;
 
-    // Delete
-    div.querySelector('.delete-btn').onclick = () => {
-        div.remove();
-        if(callbacks.onDelete) callbacks.onDelete(photo.id);
-        updatePhotoNames(callbacks.getPhotos());
+    // Rename Photo
+    const info = div.querySelector('.photo-info');
+    const handlePhotoRename = () => {
+         const text = info.innerText.trim();
+         if (text !== photo.finalName) {
+            globalCallbacks.onRenamePhoto(photo.id, text);
+         }
+    };
+    info.onblur = handlePhotoRename;
+    info.onkeydown = (e) => {
+        if(e.key === 'Enter') {
+            e.preventDefault();
+            info.blur();
+        }
     };
 
-    // Selection
+    // Actions
+    div.querySelector('.delete-btn').onclick = () => globalCallbacks.onDelete(photo.id);
+    div.querySelector('.extract-btn').onclick = () => globalCallbacks.onExtract(photo.id);
+
+    // Select
     div.querySelector('img').onclick = () => {
         div.classList.toggle('selected');
     };
 
-    // Arrows
-    div.querySelectorAll('.arrow-btn').forEach(btn => {
-        btn.onclick = (e) => {
-            e.stopPropagation();
-            const dir = parseInt(btn.dataset.dir);
-            if (dir === -1 && div.previousElementSibling) {
-                div.parentNode.insertBefore(div, div.previousElementSibling);
-            }
-            if (dir === 1 && div.nextElementSibling) {
-                div.parentNode.insertBefore(div.nextElementSibling, div);
-            }
-
-            const newOrderIds = Array.from(galleryElement.children).map(child => child.id);
-            if (callbacks.onReorder) callbacks.onReorder(newOrderIds);
-
-            updatePhotoNames(callbacks.getPhotos());
-        }
-    });
-
-    galleryElement.appendChild(div);
-}
-
-export function updatePhotoNames(photoList) {
-    const counters = {};
-    const cards = document.querySelectorAll('.photo-card');
-    cards.forEach(card => {
-        const photo = photoList.find(p => p.id === card.id);
-        if (!photo) return;
-        const base = photo.poiName;
-        counters[base] = (counters[base] || 0) + 1;
-        const finalName = `${base} - ${String(counters[base]).padStart(2, '0')}`;
-        card.querySelector('.photo-info').innerText = finalName;
-        card.dataset.downloadName = finalName + ".jpg";
-    });
+    return div;
 }
 
 export function getSelectedImages() {
@@ -86,7 +130,8 @@ export function triggerDownload() {
     document.querySelectorAll('.photo-card').forEach(card => {
         const link = document.createElement('a');
         link.href = card.querySelector('img').src;
-        link.download = card.dataset.downloadName;
+        const name = card.querySelector('.photo-info').innerText;
+        link.download = name + ".jpg";
         link.click();
     });
 }
@@ -94,7 +139,11 @@ export function triggerDownload() {
 export function showCompareModal(selectedImages) {
     const grid = document.getElementById('compare-grid');
     grid.innerHTML = '';
-    selectedImages.forEach(img => grid.appendChild(img.cloneNode()));
+    selectedImages.forEach(img => {
+        const clone = img.cloneNode();
+        clone.onclick = null;
+        grid.appendChild(clone);
+    });
     document.getElementById('compare-modal').style.display = 'block';
 }
 
