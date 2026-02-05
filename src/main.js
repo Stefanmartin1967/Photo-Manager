@@ -3,8 +3,12 @@ import exifr from 'exifr'
 import * as POIManager from './modules/poiManager.js'
 import * as PhotoManager from './modules/photoManager.js'
 import * as UIManager from './modules/uiManager.js'
+import * as ThemeManager from './modules/themeManager.js'
 
 (async () => {
+    // 0. Initialisation Thème
+    ThemeManager.init();
+
     // 1. Chargement des POIs
     await POIManager.loadPOIs();
 
