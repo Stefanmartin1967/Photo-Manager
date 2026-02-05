@@ -3,6 +3,7 @@ html[data-theme="maritime"] {
     --sidebar-width: clamp(380px, 30vw, 480px);
     --bg: #0D3B66;
     --bg-2: #062B4D;
+    --bg-pastel: #D6EAFE; /* Same as brand-soft for now */
     --surface: #FFFFFF;
     --surface-muted: #F0F4F8;
     --ink: #102A43;
@@ -20,6 +21,7 @@ html[data-theme="maritime"] {
 html[data-theme="desert"] {
     --bg: #4d2c12;
     --bg-2: #3a210e;
+    --bg-pastel: #faeadd;
     --surface: #fff8f0;
     --surface-muted: #f5efe6;
     --ink: #3a210e;
@@ -35,6 +37,7 @@ html[data-theme="desert"] {
 html[data-theme="oasis"] {
     --bg: #065f46;
     --bg-2: #054d39;
+    --bg-pastel: #d1fae5;
     --surface: #f0fdf4;
     --surface-muted: #e6f7eb;
     --ink: #064e3b;
@@ -50,6 +53,7 @@ html[data-theme="oasis"] {
 html[data-theme="night"] {
     --bg: #111827;
     --bg-2: #000000;
+    --bg-pastel: #374151;
     --surface: #1f2937;
     --surface-muted: #374151;
     --ink: #f3f4f6;
@@ -65,20 +69,55 @@ html[data-theme="night"] {
 /* APP STYLES */
 body {
     font-family: sans-serif;
-    background: var(--bg);
+    background: var(--bg-pastel);
     color: var(--ink);
     margin: 0;
-    padding-bottom: 100px;
+    padding-bottom: 20px; /* Reduced bottom padding */
     transition: background 0.3s, color 0.3s;
 }
 
 .top-bar {
-    background: var(--surface);
-    padding: 1rem;
+    background: var(--bg);
+    color: var(--surface);
+    padding: 0.5rem 1rem;
     display: flex;
-    gap: 20px;
+    gap: 15px;
     border-bottom: 1px solid var(--line);
     align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.top-bar strong {
+    font-size: 1.2rem;
+    margin-right: auto;
+    color: white; /* Ensure title is white/light on dark bg */
+}
+
+/* Top bar buttons */
+.top-bar-btn {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.8);
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.top-bar-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    transform: translateY(-1px);
+}
+
+.top-bar-btn svg {
+    width: 24px;
+    height: 24px;
 }
 
 /* Gallery Layout */
@@ -154,22 +193,10 @@ body {
 .delete-btn { background: var(--danger); }
 .extract-btn { background: var(--warn); }
 
-.bottom-controls {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--surface);
-    padding: 15px 30px;
-    border-radius: 50px;
-    display: flex;
-    gap: 15px;
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
-    z-index: 100;
-    border: 1px solid var(--line);
-}
+/* Removed .bottom-controls styles */
 
 button { padding: 8px 16px; border-radius: 20px; border: none; cursor: pointer; font-weight: 600; }
+/* Keep utility classes just in case, though they might not be used for top bar */
 .btn-primary { background: var(--brand); color: white; }
 .btn-save { background: var(--ok); color: white; }
 .btn-share { background: var(--brand-soft); color: var(--ink); }
@@ -185,8 +212,12 @@ button { padding: 8px 16px; border-radius: 20px; border: none; cursor: pointer; 
 #themeSelector {
     padding: 5px 10px;
     border-radius: 5px;
-    border: 1px solid var(--line);
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(0,0,0,0.2);
+    color: white;
+    margin-left: 0;
+}
+#themeSelector option {
     background: var(--surface);
     color: var(--ink);
-    margin-left: auto;
 }

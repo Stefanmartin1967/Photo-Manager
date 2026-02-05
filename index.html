@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="maritime">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,24 +9,44 @@
     <div id="app">
         <div class="top-bar">
             <strong>Djerba Pro</strong>
-            <input type="file" id="photoInput" multiple accept="image/*">
-            <button id="groupBtn">Grouper par POI : OFF</button>
-            <select id="themeSelector">
+
+            <!-- Theme Selector -->
+            <select id="themeSelector" title="Changer de thème">
                 <option value="maritime">Maritime</option>
                 <option value="desert">Désert</option>
                 <option value="oasis">Oasis</option>
                 <option value="night">Nuit</option>
             </select>
+
+            <!-- File Input (Hidden) & Trigger -->
+            <input type="file" id="photoInput" multiple accept="image/*" style="display: none;">
+            <button id="addPhotoBtn" class="top-bar-btn" title="Ajouter des photos">
+                <i data-lucide="image-plus"></i>
+            </button>
+
+            <!-- Group Button -->
+            <button id="groupBtn" class="top-bar-btn" title="Grouper par POI : OFF">
+                <i data-lucide="layers"></i>
+            </button>
+
+            <!-- Compare Button -->
+            <button id="compareBtn" class="top-bar-btn" title="Comparer (max 4)">
+                <i data-lucide="arrow-right-left"></i>
+            </button>
+
+            <!-- Save Button -->
+            <button id="saveBtn" class="top-bar-btn" title="Enregistrer Tout">
+                <i data-lucide="save"></i>
+            </button>
+
+            <!-- Share Button -->
+            <button id="shareBtn" class="top-bar-btn" title="Partager la sélection">
+                <i data-lucide="share-2"></i>
+            </button>
         </div>
 
         <div id="main-container">
             <div id="default-gallery" class="gallery"></div>
-        </div>
-
-        <div class="bottom-controls">
-            <button class="btn-primary" id="compareBtn">Comparer (max 4)</button>
-            <button class="btn-save" id="saveBtn">Enregistrer Tout</button>
-            <button class="btn-share" id="shareBtn">Partager la sélection</button>
         </div>
 
         <div id="compare-modal">
