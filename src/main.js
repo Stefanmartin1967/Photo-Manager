@@ -1,18 +1,30 @@
 import './style.css'
 import exifr from 'exifr'
+import { createIcons, ImagePlus, Layers, ArrowRightLeft, Save, Share2 } from 'lucide'
 import * as POIManager from './modules/poiManager.js'
 import * as PhotoManager from './modules/photoManager.js'
 import * as UIManager from './modules/uiManager.js'
 import * as ThemeManager from './modules/themeManager.js'
 
 (async () => {
-    // 0. Initialisation Thème
+    // 0. Initialisation Lucide Icons
+    createIcons({
+        icons: {
+            ImagePlus,
+            Layers,
+            ArrowRightLeft,
+            Save,
+            Share2
+        }
+    });
+
+    // 1. Initialisation Thème
     ThemeManager.init();
 
-    // 1. Chargement des POIs
+    // 2. Chargement des POIs
     await POIManager.loadPOIs();
 
-    // 2. Initialisation UI
+    // 3. Initialisation UI
     UIManager.initGallery('default-gallery', {
         onMove: (photoId, targetGroupId, newIndex) => {
             PhotoManager.movePhoto(photoId, targetGroupId, newIndex);
@@ -36,8 +48,14 @@ import * as ThemeManager from './modules/themeManager.js'
         }
     });
 
-    // 3. Gestion des photos (Input)
+    // 4. Gestion des photos (Input)
     const photoInput = document.getElementById('photoInput');
+    const addPhotoBtn = document.getElementById('addPhotoBtn');
+
+    if (addPhotoBtn && photoInput) {
+        addPhotoBtn.onclick = () => photoInput.click();
+    }
+
     if (photoInput) {
         photoInput.addEventListener('change', async (e) => {
             const files = Array.from(e.target.files);
@@ -93,4 +111,63 @@ import * as ThemeManager from './modules/themeManager.js'
             UIManager.closeCompareModal();
         };
     }
+
+    // Share Button Logic
+    const shareBtn = document.getElementById('shareBtn');
+    if (shareBtn) {
+        shareBtn.onclick = async () => {
+            const selectedImgs = UIManager.getSelectedImages();
+            if (selectedImgs.length === 0) return alert("Sélectionnez des photos à partager.");
+
+            const allPhotos = PhotoManager.getAllPhotosFlat();
+            const filesToShare = [];
+
+            selectedImgs.forEach(img => {
+                const card = img.closest('.photo-card');
+                if (card) {
+                    const photo = allPhotos.find(p => p.id === card.id);
+                    if (photo && photo.file) {
+                        filesToShare.push(photo.file);
+                    }
+                }
+            });
+
+            if (filesToShare.length === 0) return;
+
+            if (navigator.share && navigator.canShare({ files: filesToShare })) {
+                try {
+                    await navigator.share({
+                        files: filesToShare,
+                        title: 'Photos Djerba',
+                        text: 'Voici quelques photos...'
+                    });
+                } catch (error) {
+                    console.error('Erreur partage:', error);
+                }
+            } else {
+                alert("Le partage de fichiers n'est pas supporté sur ce navigateur.");
+            }
+        };
+    }
+
+    // Group Button Logic (Toggle Visual Only for now as logic is missing)
+    const groupBtn = document.getElementById('groupBtn');
+    if (groupBtn) {
+        let isGrouped = false; // Default assumed state based on previous "OFF" text? Or maybe it meant "Currently OFF"?
+        // Original text: "Grouper par POI : OFF". Usually means current state is OFF.
+        // But code creates groups by POI by default in addPhotos.
+        // Let's assume it's just a placeholder for now.
+
+        groupBtn.onclick = () => {
+            isGrouped = !isGrouped;
+            // Update title
+            groupBtn.title = isGrouped ? "Grouper par POI : ON" : "Grouper par POI : OFF";
+            // Toggle visual state (e.g. opacity or color)
+            groupBtn.style.color = isGrouped ? 'var(--brand)' : 'inherit';
+
+            // Note: Actual logic to regroup is not implemented as it requires refactoring PhotoManager
+            console.log("Grouping toggled:", isGrouped);
+        };
+    }
+
 })();
