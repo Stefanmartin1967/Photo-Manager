@@ -1,4 +1,5 @@
 import Sortable from 'sortablejs';
+import { createIcons, Info, Trash2, Route } from 'lucide';
 
 let galleryElement = null;
 let globalCallbacks = {};
@@ -79,6 +80,20 @@ export function renderGallery(groups) {
         groupEl.appendChild(list);
         galleryElement.appendChild(groupEl);
     });
+
+    // Initialize icons for the entire gallery
+    try {
+        createIcons({
+            root: galleryElement,
+            icons: {
+                Info,
+                Route,
+                Trash2
+            }
+        });
+    } catch (e) {
+        console.error("Lucide createIcons error:", e);
+    }
 }
 
 function createPhotoCard(photo) {
@@ -88,8 +103,9 @@ function createPhotoCard(photo) {
 
     div.innerHTML = `
         <div class="card-controls">
-            <button class="extract-btn" title="Extraire vers Trajet">T</button>
-            <button class="delete-btn" title="Supprimer">×</button>
+            <button class="info-btn" title="Infos Métadonnées"><i data-lucide="info"></i></button>
+            <button class="extract-btn" title="Extraire vers Trajet"><i data-lucide="route"></i></button>
+            <button class="delete-btn" title="Supprimer"><i data-lucide="trash-2"></i></button>
         </div>
         <img src="${photo.dataUrl}">
         <div class="photo-info" contenteditable="true" spellcheck="false">${photo.finalName}</div>
@@ -115,6 +131,12 @@ function createPhotoCard(photo) {
     // Actions
     div.querySelector('.delete-btn').onclick = () => globalCallbacks.onDelete(photo.id);
     div.querySelector('.extract-btn').onclick = () => globalCallbacks.onExtract(photo.id);
+    div.querySelector('.info-btn').onclick = () => {
+        const dateStr = photo.date ? new Date(photo.date).toLocaleString() : 'N/A';
+        const latStr = (photo.lat !== null && photo.lat !== undefined) ? photo.lat.toFixed(6) : 'N/A';
+        const lonStr = (photo.lon !== null && photo.lon !== undefined) ? photo.lon.toFixed(6) : 'N/A';
+        alert(`Date: ${dateStr}\nLat: ${latStr}\nLon: ${lonStr}`);
+    };
 
     // Select
     div.querySelector('img').onclick = () => {

@@ -105,14 +105,21 @@ import * as ThemeManager from './modules/themeManager.js'
                 let lon = null;
 
                 try {
-                    const data = await exifr.parse(file);
+                    // Force reading GPS data to ensure mobile devices extract it correctly
+                    const data = await exifr.parse(file, {
+                        tiff: true,
+                        ifd0: true,
+                        gps: true,
+                        exif: true
+                    });
+
                     if (data) {
                         date = data.DateTimeOriginal || data.CreateDate || null;
                         lat = data.latitude;
                         lon = data.longitude;
                     }
                 } catch (err) {
-                    console.warn("Pas de métadonnées pour", file.name);
+                    console.warn("Pas de métadonnées pour", file.name, err);
                 }
 
                 const photoObj = PhotoManager.createPhotoObject(file, date, lat, lon);
