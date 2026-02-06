@@ -1,6 +1,6 @@
 import './style.css'
 import exifr from 'exifr'
-import { createIcons, ImagePlus, Layers, ArrowRightLeft, Save, Share2 } from 'lucide'
+import { createIcons, ImagePlus, Layers, ArrowRightLeft, Save, Share2, Minus, Plus } from 'lucide'
 import * as POIManager from './modules/poiManager.js'
 import * as PhotoManager from './modules/photoManager.js'
 import * as UIManager from './modules/uiManager.js'
@@ -14,7 +14,9 @@ import * as ThemeManager from './modules/themeManager.js'
             Layers,
             ArrowRightLeft,
             Save,
-            Share2
+            Share2,
+            Minus,
+            Plus
         }
     });
 
@@ -48,7 +50,43 @@ import * as ThemeManager from './modules/themeManager.js'
         }
     });
 
-    // 4. Gestion des photos (Input)
+    // 4. Radius Control Logic
+    const radiusInput = document.getElementById('radiusInput');
+    const radiusMinus = document.getElementById('radiusMinus');
+    const radiusPlus = document.getElementById('radiusPlus');
+
+    const updateRadius = (newVal) => {
+        const val = parseInt(newVal);
+        if (isNaN(val) || val < 0) return;
+
+        PhotoManager.setGroupingRadius(val);
+        radiusInput.value = val;
+
+        // Re-cluster
+        PhotoManager.reorganizeAllPhotos(POIManager.getPois());
+        UIManager.updateUI(PhotoManager.getGroups());
+    };
+
+    if (radiusInput && radiusMinus && radiusPlus) {
+        // Init default
+        radiusInput.value = PhotoManager.getGroupingRadius();
+
+        radiusMinus.onclick = () => {
+            const current = parseInt(radiusInput.value) || 0;
+            updateRadius(Math.max(0, current - 50));
+        };
+
+        radiusPlus.onclick = () => {
+            const current = parseInt(radiusInput.value) || 0;
+            updateRadius(current + 50);
+        };
+
+        radiusInput.onchange = () => {
+            updateRadius(radiusInput.value);
+        };
+    }
+
+    // 5. Gestion des photos (Input)
     const photoInput = document.getElementById('photoInput');
     const addPhotoBtn = document.getElementById('addPhotoBtn');
 

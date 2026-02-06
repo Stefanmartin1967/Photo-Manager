@@ -221,3 +221,54 @@ button { padding: 8px 16px; border-radius: 20px; border: none; cursor: pointer; 
     background: var(--surface);
     color: var(--ink);
 }
+
+/* Radius Control */
+.radius-control {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(0,0,0,0.2);
+    padding: 2px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.radius-control input {
+    width: 50px;
+    background: transparent;
+    border: none;
+    color: white;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+    -moz-appearance: textfield;
+}
+
+.radius-control input::-webkit-outer-spin-button,
+.radius-control input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.radius-btn {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.8);
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.radius-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.radius-btn svg {
+    width: 16px;
+    height: 16px;
+}

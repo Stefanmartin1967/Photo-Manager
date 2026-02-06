@@ -1,8 +1,30 @@
 import { calculateHaversineDistance } from './utils.js';
 
 let groups = [];
+let groupingRadius = 250; // Default 250m
 
 const generateId = () => Math.random().toString(36).substr(2, 9);
+
+export function getGroupingRadius() {
+    return groupingRadius;
+}
+
+export function setGroupingRadius(radius) {
+    groupingRadius = radius;
+}
+
+export function reorganizeAllPhotos(pois) {
+    const allPhotos = getAllPhotosFlat();
+    // Reset custom names if they were auto-generated?
+    // Actually, user might have renamed photos/groups.
+    // If we re-cluster, we lose group structure (custom group names).
+    // Photo custom names are preserved in the photo object.
+
+    groups = [];
+    if (allPhotos.length > 0) {
+        addPhotos(allPhotos, pois);
+    }
+}
 
 export function getGroups() {
     let groupCounter = 1;
@@ -114,8 +136,8 @@ function findNearestPOI(lat, lon, pois) {
         }
     });
 
-    // Rayon de 60 mètres
-    if (minDist <= 60) {
+    // Rayon dynamique
+    if (minDist <= groupingRadius) {
         return nearest;
     }
     return null;

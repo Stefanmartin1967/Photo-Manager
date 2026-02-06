@@ -18,6 +18,13 @@
                 <option value="night">Nuit</option>
             </select>
 
+            <!-- Radius Control -->
+            <div class="radius-control">
+                <button id="radiusMinus" class="radius-btn" title="- 50m"><i data-lucide="minus"></i></button>
+                <input type="number" id="radiusInput" value="250" step="50" min="0" title="Rayon de groupement (m)">
+                <button id="radiusPlus" class="radius-btn" title="+ 50m"><i data-lucide="plus"></i></button>
+            </div>
+
             <!-- File Input (Hidden) & Trigger -->
             <input type="file" id="photoInput" multiple accept="image/*" style="display: none;">
             <button id="addPhotoBtn" class="top-bar-btn" title="Ajouter des photos">
