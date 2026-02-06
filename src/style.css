@@ -190,8 +190,10 @@ body {
 
 .card-controls { position: absolute; top: 5px; right: 5px; display: flex; gap: 5px; z-index: 10; }
 .card-controls button { width: 25px; height: 25px; border-radius: 50%; border: none; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; padding: 0; }
+.card-controls svg { width: 14px; height: 14px; stroke-width: 2.5; }
 .delete-btn { background: var(--danger); }
 .extract-btn { background: var(--warn); }
+.info-btn { background: var(--brand); }
 
 /* Removed .bottom-controls styles */
 
