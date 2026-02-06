@@ -36,6 +36,7 @@ export function renderGallery(groups) {
              }
         };
 
+        title.onfocus = () => selectContent(title);
         title.onblur = handleRename;
         title.onkeydown = (e) => {
             if(e.key === 'Enter') {
@@ -102,6 +103,7 @@ function createPhotoCard(photo) {
             globalCallbacks.onRenamePhoto(photo.id, text);
          }
     };
+    info.onfocus = () => selectContent(info);
     info.onblur = handlePhotoRename;
     info.onkeydown = (e) => {
         if(e.key === 'Enter') {
@@ -149,4 +151,14 @@ export function showCompareModal(selectedImages) {
 
 export function closeCompareModal() {
     document.getElementById('compare-modal').style.display = 'none';
+}
+
+function selectContent(element) {
+    setTimeout(() => {
+        const range = document.createRange();
+        range.selectNodeContents(element);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+    }, 0);
 }
