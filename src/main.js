@@ -30,23 +30,23 @@ import * as ThemeManager from './modules/themeManager.js'
     UIManager.initGallery('default-gallery', {
         onMove: (photoId, targetGroupId, newIndex) => {
             PhotoManager.movePhoto(photoId, targetGroupId, newIndex);
-            UIManager.updateUI(PhotoManager.getGroups());
+            UIManager.renderGallery(PhotoManager.getGroups());
         },
         onRenameGroup: (groupId, newName) => {
             PhotoManager.renameGroup(groupId, newName);
-            UIManager.updateUI(PhotoManager.getGroups());
+            UIManager.renderGallery(PhotoManager.getGroups());
         },
         onRenamePhoto: (photoId, newName) => {
             PhotoManager.renamePhoto(photoId, newName);
-            UIManager.updateUI(PhotoManager.getGroups());
+            UIManager.renderGallery(PhotoManager.getGroups());
         },
         onExtract: (photoId) => {
             PhotoManager.extractToTrajet(photoId);
-            UIManager.updateUI(PhotoManager.getGroups());
+            UIManager.renderGallery(PhotoManager.getGroups());
         },
         onDelete: (photoId) => {
             PhotoManager.removePhoto(photoId);
-            UIManager.updateUI(PhotoManager.getGroups());
+            UIManager.renderGallery(PhotoManager.getGroups());
         }
     });
 
@@ -64,7 +64,7 @@ import * as ThemeManager from './modules/themeManager.js'
 
         // Re-cluster
         PhotoManager.reorganizeAllPhotos(POIManager.getPois());
-        UIManager.updateUI(PhotoManager.getGroups());
+        UIManager.renderGallery(PhotoManager.getGroups());
     };
 
     if (radiusInput && radiusMinus && radiusPlus) {
@@ -120,7 +120,7 @@ import * as ThemeManager from './modules/themeManager.js'
             }
 
             PhotoManager.addPhotos(newPhotos, POIManager.getPois());
-            UIManager.updateUI(PhotoManager.getGroups());
+            UIManager.renderGallery(PhotoManager.getGroups());
 
             e.target.value = ''; // Reset input
         });
