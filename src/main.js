@@ -106,7 +106,9 @@ import * as ThemeManager from './modules/themeManager.js'
 
                 try {
                     // Force reading GPS data to ensure mobile devices extract it correctly
-                    const data = await exifr.parse(file, {
+                    // Use ArrayBuffer to bypass potential Blob.slice issues on Android Chrome
+                    const buffer = await file.arrayBuffer();
+                    const data = await exifr.parse(buffer, {
                         tiff: true,
                         ifd0: true,
                         gps: true,
@@ -115,8 +117,8 @@ import * as ThemeManager from './modules/themeManager.js'
 
                     if (data) {
                         date = data.DateTimeOriginal || data.CreateDate || null;
-                        lat = data.latitude;
-                        lon = data.longitude;
+                        lat = (typeof data.latitude === 'number' && !isNaN(data.latitude)) ? data.latitude : null;
+                        lon = (typeof data.longitude === 'number' && !isNaN(data.longitude)) ? data.longitude : null;
                     }
                 } catch (err) {
                     console.warn("Pas de métadonnées pour", file.name, err);
