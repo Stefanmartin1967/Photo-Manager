@@ -213,7 +213,6 @@ import * as ThemeManager from './modules/themeManager.js'
             groupBtn.style.color = isGrouped ? 'var(--brand)' : 'inherit';
 
             // Note: Actual logic to regroup is not implemented as it requires refactoring PhotoManager
-            console.log("Grouping toggled:", isGrouped);
         };
     }
 
