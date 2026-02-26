@@ -1,6 +1,10 @@
 // Calcul de la distance de Haversine entre deux points (lat/lon)
 // Retourne la distance en mètres
 export function calculateHaversineDistance(lat1, lon1, lat2, lon2) {
+    if (!Number.isFinite(lat1) || !Number.isFinite(lon1) || !Number.isFinite(lat2) || !Number.isFinite(lon2)) {
+        return NaN;
+    }
+
     const R = 6371e3; // Rayon de la Terre en mètres
     const phi1 = lat1 * Math.PI / 180; // φ, λ en radians
     const phi2 = lat2 * Math.PI / 180;
