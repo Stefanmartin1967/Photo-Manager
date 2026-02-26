@@ -1,7 +1,8 @@
 import { calculateHaversineDistance } from './utils.js';
+import { DEFAULT_GROUPING_RADIUS } from './constants.js';
 
 let groups = [];
-let groupingRadius = 250; // Default 250m
+let groupingRadius = DEFAULT_GROUPING_RADIUS;
 
 const generateId = () => Math.random().toString(36).substr(2, 9);
 
