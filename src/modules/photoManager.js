@@ -1,6 +1,7 @@
 import { calculateHaversineDistance } from './utils.js';
 
 let groups = [];
+let photoIdToGroup = new Map();
 let groupingRadius = 250; // Default 250m
 
 const generateId = () => Math.random().toString(36).substr(2, 9);
@@ -21,6 +22,7 @@ export function reorganizeAllPhotos(pois) {
     // Photo custom names are preserved in the photo object.
 
     groups = [];
+    photoIdToGroup.clear();
     if (allPhotos.length > 0) {
         addPhotos(allPhotos, pois);
     }
@@ -118,6 +120,7 @@ function clusterPhotos(photos, pois) {
             };
             clusters.push(currentGroup);
         }
+        photoIdToGroup.set(photo.id, currentGroup);
     });
 
     return clusters;
@@ -160,6 +163,7 @@ function mergeAdjacentGroups() {
         }
 
         if (canMerge) {
+            next.photos.forEach(p => photoIdToGroup.set(p.id, curr));
             curr.photos.push(...next.photos);
             groups.splice(i + 1, 1);
             i--; // Re-check
@@ -168,41 +172,39 @@ function mergeAdjacentGroups() {
 }
 
 export function movePhoto(photoId, targetGroupId, newIndex) {
-    let photo = null;
+    const g = photoIdToGroup.get(photoId);
+    if (!g) return;
 
-    for (const g of groups) {
-        const idx = g.photos.findIndex(p => p.id === photoId);
-        if (idx !== -1) {
-            photo = g.photos[idx];
-            g.photos.splice(idx, 1);
-            // Remove empty group
-            if (g.photos.length === 0) {
-                const gIdx = groups.indexOf(g);
-                groups.splice(gIdx, 1);
-            }
-            break;
-        }
+    const idx = g.photos.findIndex(p => p.id === photoId);
+    if (idx === -1) return;
+    const photo = g.photos[idx];
+    g.photos.splice(idx, 1);
+
+    // Remove empty group
+    if (g.photos.length === 0) {
+        const gIdx = groups.indexOf(g);
+        if (gIdx !== -1) groups.splice(gIdx, 1);
     }
 
-    if (!photo) return;
-
-    const target = groups.find(g => g.id === targetGroupId);
+    const target = groups.find(t => t.id === targetGroupId);
     if (target) {
         target.photos.splice(newIndex, 0, photo);
+        photoIdToGroup.set(photoId, target);
+    } else {
+        photoIdToGroup.delete(photoId);
     }
 }
 
 export function extractToTrajet(photoId) {
-    let gIndex = -1, pIndex = -1;
-    for(let i=0; i<groups.length; i++) {
-        const idx = groups[i].photos.findIndex(p => p.id === photoId);
-        if(idx !== -1) { gIndex = i; pIndex = idx; break; }
-    }
+    const group = photoIdToGroup.get(photoId);
+    if (!group) return;
+
+    const pIndex = group.photos.findIndex(p => p.id === photoId);
+    if (pIndex === -1) return;
+    const gIndex = groups.indexOf(group);
     if (gIndex === -1) return;
 
-    const group = groups[gIndex];
     const photo = group.photos[pIndex];
-
     group.photos.splice(pIndex, 1);
 
     const newTrajet = {
@@ -212,6 +214,7 @@ export function extractToTrajet(photoId) {
         customName: null,
         photos: [photo]
     };
+    photoIdToGroup.set(photo.id, newTrajet);
 
     if (group.photos.length === 0) {
         groups.splice(gIndex, 1, newTrajet);
@@ -230,6 +233,7 @@ export function extractToTrajet(photoId) {
             id: 'g-' + generateId(),
             photos: remainingPhotos
         };
+        remainingPhotos.forEach(p => photoIdToGroup.set(p.id, newGroupAfter));
         groups.splice(gIndex + 1, 0, newTrajet, newGroupAfter);
     }
 }
@@ -240,28 +244,28 @@ export function renameGroup(groupId, newName) {
 }
 
 export function renamePhoto(photoId, newName) {
-    for (const g of groups) {
+    const g = photoIdToGroup.get(photoId);
+    if (g) {
         const p = g.photos.find(ph => ph.id === photoId);
-        if (p) {
-            p.customName = newName;
-            return;
-        }
+        if (p) p.customName = newName;
     }
 }
 
 export function removePhoto(id) {
-    for (let i = 0; i < groups.length; i++) {
-        const idx = groups[i].photos.findIndex(p => p.id === id);
-        if (idx !== -1) {
-             const p = groups[i].photos[idx];
-             if (p.dataUrl && !p.dataUrl.startsWith('data:')) {
-                 URL.revokeObjectURL(p.dataUrl);
-             }
-            groups[i].photos.splice(idx, 1);
-            if (groups[i].photos.length === 0) {
-                groups.splice(i, 1);
-            }
-            return;
+    const g = photoIdToGroup.get(id);
+    if (!g) return;
+
+    const idx = g.photos.findIndex(p => p.id === id);
+    if (idx !== -1) {
+        const p = g.photos[idx];
+        if (p.dataUrl && !p.dataUrl.startsWith('data:')) {
+            URL.revokeObjectURL(p.dataUrl);
+        }
+        g.photos.splice(idx, 1);
+        photoIdToGroup.delete(id);
+        if (g.photos.length === 0) {
+            const gIdx = groups.indexOf(g);
+            if (gIdx !== -1) groups.splice(gIdx, 1);
         }
     }
 }
