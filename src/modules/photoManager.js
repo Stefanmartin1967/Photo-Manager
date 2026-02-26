@@ -2,6 +2,7 @@ import { calculateHaversineDistance } from './utils.js';
 import { DEFAULT_GROUPING_RADIUS } from './constants.js';
 
 let groups = [];
+const photoIdToGroup = new Map();
 let groupingRadius = DEFAULT_GROUPING_RADIUS;
 
 const generateId = () => Math.random().toString(36).substr(2, 9);
