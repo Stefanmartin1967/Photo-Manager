@@ -11,7 +11,6 @@ export async function loadPOIs() {
             lat: f.geometry.coordinates[1],
             lon: f.geometry.coordinates[0]
         }));
-        console.log("📍 POIs chargés:", pois.length);
     } catch (e) { console.error("Erreur GeoJSON:", e); }
 }
 
