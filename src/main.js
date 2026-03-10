@@ -148,7 +148,7 @@ import * as ThemeManager from './modules/themeManager.js'
     if (compareBtn) {
         compareBtn.onclick = () => {
             const selected = UIManager.getSelectedImages();
-            if (selected.length < 2 || selected.length > 4) return alert("Sélectionne entre 2 et 4 photos pour comparer");
+            if (selected.length < 1 || selected.length > 4) return alert("Sélectionne entre 1 et 4 photos pour comparer");
             UIManager.showCompareModal(selected);
         };
     }
