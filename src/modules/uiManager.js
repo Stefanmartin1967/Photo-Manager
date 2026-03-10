@@ -1,5 +1,7 @@
 import Sortable from 'sortablejs';
 import { createIcons, Info, Trash2, Route } from 'lucide';
+import JSZip from 'jszip';
+import { saveAs } from 'file-saver';
 
 let galleryElement = null;
 let globalCallbacks = {};
@@ -150,14 +152,54 @@ export function getSelectedImages() {
     return document.querySelectorAll('.photo-card.selected img');
 }
 
-export function triggerDownload() {
-    document.querySelectorAll('.photo-card').forEach(card => {
-        const link = document.createElement('a');
-        link.href = card.querySelector('img').src;
-        const name = card.querySelector('.photo-info').innerText;
-        link.download = name + ".jpg";
-        link.click();
+export async function triggerDownload(allPhotosFlat) {
+    const cards = document.querySelectorAll('.photo-card');
+    if (cards.length === 0) {
+        alert("Aucune photo à enregistrer.");
+        return;
+    }
+
+    // Determine default name
+    let defaultName = "Circuit_Djerba";
+    const groupTitles = Array.from(document.querySelectorAll('.group-title')).map(el => el.innerText.trim());
+    if (groupTitles.length > 0) {
+        // Extract names without the number prefix if possible
+        const cleanName = (title) => {
+            const match = title.match(/^\d+\s*-\s*(.*)/);
+            return match ? match[1] : title;
+        };
+        const first = cleanName(groupTitles[0]);
+        const last = cleanName(groupTitles[groupTitles.length - 1]);
+        if (first && last && first !== last) {
+            defaultName = `Circuit de "${first}" à "${last}"`;
+        } else if (first) {
+            defaultName = `Circuit "${first}"`;
+        }
+    }
+
+    const albumName = prompt("Nom d'album :", defaultName);
+    if (!albumName) return; // User cancelled
+
+    const zip = new JSZip();
+
+    cards.forEach(card => {
+        const photoId = card.id;
+        const name = card.querySelector('.photo-info').innerText.trim() + ".jpg";
+
+        // Find original file in the flat list
+        const photoObj = allPhotosFlat.find(p => p.id === photoId);
+        if (photoObj && photoObj.file) {
+            zip.file(name, photoObj.file);
+        }
     });
+
+    try {
+        const content = await zip.generateAsync({ type: "blob" });
+        saveAs(content, `${albumName}.zip`);
+    } catch (err) {
+        console.error("Erreur lors de la création du ZIP:", err);
+        alert("Une erreur est survenue lors de l'enregistrement des photos.");
+    }
 }
 
 export function showCompareModal(selectedImages) {

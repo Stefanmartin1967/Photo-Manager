@@ -139,7 +139,8 @@ import * as ThemeManager from './modules/themeManager.js'
     const saveBtn = document.getElementById('saveBtn');
     if (saveBtn) {
         saveBtn.onclick = () => {
-            UIManager.triggerDownload();
+            const allPhotos = PhotoManager.getAllPhotosFlat();
+            UIManager.triggerDownload(allPhotos);
         };
     }
 
