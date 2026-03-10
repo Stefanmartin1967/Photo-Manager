@@ -207,16 +207,18 @@ export function showCompareModal(selectedImages) {
     grid.innerHTML = '';
 
     // Dynamically adjust grid columns and rows based on number of images
+    // Using minmax(0, 1fr) ensures the grid tracks never exceed the viewport size,
+    // forcing large images to shrink and fit perfectly.
     const count = selectedImages.length;
     if (count === 1) {
-        grid.style.gridTemplateColumns = '1fr';
-        grid.style.gridTemplateRows = '1fr';
+        grid.style.gridTemplateColumns = 'minmax(0, 1fr)';
+        grid.style.gridTemplateRows = 'minmax(0, 1fr)';
     } else if (count === 2) {
-        grid.style.gridTemplateColumns = 'repeat(2, 1fr)';
-        grid.style.gridTemplateRows = '1fr';
+        grid.style.gridTemplateColumns = 'repeat(2, minmax(0, 1fr))';
+        grid.style.gridTemplateRows = 'minmax(0, 1fr)';
     } else { // 3 or 4
-        grid.style.gridTemplateColumns = 'repeat(2, 1fr)';
-        grid.style.gridTemplateRows = 'repeat(2, 1fr)';
+        grid.style.gridTemplateColumns = 'repeat(2, minmax(0, 1fr))';
+        grid.style.gridTemplateRows = 'repeat(2, minmax(0, 1fr))';
     }
 
     selectedImages.forEach(img => {
