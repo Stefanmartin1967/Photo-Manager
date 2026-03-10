@@ -171,9 +171,9 @@ export async function triggerDownload(allPhotosFlat) {
         const first = cleanName(groupTitles[0]);
         const last = cleanName(groupTitles[groupTitles.length - 1]);
         if (first && last && first !== last) {
-            defaultName = `Circuit de "${first}" à "${last}"`;
+            defaultName = `Circuit de ${first} à ${last}`;
         } else if (first) {
-            defaultName = `Circuit "${first}"`;
+            defaultName = `Circuit ${first}`;
         }
     }
 
@@ -205,6 +205,20 @@ export async function triggerDownload(allPhotosFlat) {
 export function showCompareModal(selectedImages) {
     const grid = document.getElementById('compare-grid');
     grid.innerHTML = '';
+
+    // Dynamically adjust grid columns and rows based on number of images
+    const count = selectedImages.length;
+    if (count === 1) {
+        grid.style.gridTemplateColumns = '1fr';
+        grid.style.gridTemplateRows = '1fr';
+    } else if (count === 2) {
+        grid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+        grid.style.gridTemplateRows = '1fr';
+    } else { // 3 or 4
+        grid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+        grid.style.gridTemplateRows = 'repeat(2, 1fr)';
+    }
+
     selectedImages.forEach(img => {
         const clone = img.cloneNode();
         clone.onclick = null;
