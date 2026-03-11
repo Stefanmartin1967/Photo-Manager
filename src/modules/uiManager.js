@@ -149,6 +149,10 @@ function createPhotoCard(photo) {
 }
 
 export function getSelectedImages() {
+    // Actually, returning the `.photo-card` itself is more useful now.
+    // Let's keep returning images for compatibility with main.js, or adjust main.js.
+    // Wait, the requirement says "return the image", but main.js uses `.closest('.photo-card')`.
+    // Let's just return the `img` elements to avoid breaking `main.js` which expects them.
     return document.querySelectorAll('.photo-card.selected img');
 }
 
@@ -206,26 +210,95 @@ export function showCompareModal(selectedImages) {
     const grid = document.getElementById('compare-grid');
     grid.innerHTML = '';
 
-    // Dynamically adjust grid columns and rows based on number of images
-    // Using minmax(0, 1fr) ensures the grid tracks never exceed the viewport size,
-    // forcing large images to shrink and fit perfectly.
-    const count = selectedImages.length;
-    if (count === 1) {
-        grid.style.gridTemplateColumns = 'minmax(0, 1fr)';
-        grid.style.gridTemplateRows = 'minmax(0, 1fr)';
-    } else if (count === 2) {
-        grid.style.gridTemplateColumns = 'repeat(2, minmax(0, 1fr))';
-        grid.style.gridTemplateRows = 'minmax(0, 1fr)';
-    } else { // 3 or 4
-        grid.style.gridTemplateColumns = 'repeat(2, minmax(0, 1fr))';
-        grid.style.gridTemplateRows = 'repeat(2, minmax(0, 1fr))';
-    }
+    // Convert NodeList/Array of imgs to an array of parent cards to handle them easier
+    let cards = Array.from(selectedImages).map(img => img.closest('.photo-card'));
 
-    selectedImages.forEach(img => {
-        const clone = img.cloneNode();
-        clone.onclick = null;
-        grid.appendChild(clone);
-    });
+    const renderGrid = () => {
+        grid.innerHTML = '';
+        const count = cards.length;
+        if (count === 0) {
+            closeCompareModal();
+            return;
+        }
+
+        if (count === 1) {
+            grid.style.gridTemplateColumns = 'minmax(0, 1fr)';
+            grid.style.gridTemplateRows = 'minmax(0, 1fr)';
+        } else if (count === 2) {
+            grid.style.gridTemplateColumns = 'repeat(2, minmax(0, 1fr))';
+            grid.style.gridTemplateRows = 'minmax(0, 1fr)';
+        } else { // 3 or 4
+            grid.style.gridTemplateColumns = 'repeat(2, minmax(0, 1fr))';
+            grid.style.gridTemplateRows = 'repeat(2, minmax(0, 1fr))';
+        }
+
+        cards.forEach(originalCard => {
+            const clone = originalCard.cloneNode(true);
+            clone.classList.remove('selected'); // Remove selection border in compare mode
+
+            // Remove the selection toggle click from the image
+            const img = clone.querySelector('img');
+            if (img) img.onclick = null;
+
+            // Prevent editing the name inside compare modal to avoid sync issues
+            const info = clone.querySelector('.photo-info');
+            if (info) {
+                info.contentEditable = false;
+                info.onfocus = null;
+                info.onblur = null;
+                info.onkeydown = null;
+            }
+
+            // Re-attach actions
+            const deleteBtn = clone.querySelector('.delete-btn');
+            if (deleteBtn) {
+                deleteBtn.onclick = () => {
+                    globalCallbacks.onDelete(originalCard.id);
+                    // Remove from our local cards array
+                    cards = cards.filter(c => c.id !== originalCard.id);
+                    // Re-render the grid
+                    renderGrid();
+                };
+            }
+
+            const extractBtn = clone.querySelector('.extract-btn');
+            if (extractBtn) {
+                extractBtn.onclick = () => {
+                    globalCallbacks.onExtract(originalCard.id);
+                    cards = cards.filter(c => c.id !== originalCard.id);
+                    renderGrid();
+                };
+            }
+
+            const infoBtn = clone.querySelector('.info-btn');
+            if (infoBtn) {
+                // Copy the click handler from the original card's info button
+                // Because we don't have the photo object here, we can trigger the original button's click
+                infoBtn.onclick = () => {
+                    const originalBtn = originalCard.querySelector('.info-btn');
+                    if (originalBtn) originalBtn.click();
+                };
+            }
+
+            grid.appendChild(clone);
+        });
+
+        // Initialize icons for the cloned cards
+        try {
+            createIcons({
+                root: grid,
+                icons: {
+                    Info,
+                    Route,
+                    Trash2
+                }
+            });
+        } catch (e) {
+            console.error("Lucide createIcons error in compare modal:", e);
+        }
+    };
+
+    renderGrid();
     document.getElementById('compare-modal').style.display = 'block';
 }
 
