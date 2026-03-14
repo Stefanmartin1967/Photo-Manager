@@ -56,11 +56,11 @@ export function getAllPhotosFlat() {
     return groups.flatMap(g => g.photos);
 }
 
-export function createPhotoObject(file, date, lat, lon) {
+export function createPhotoObject(file, date, lat, lon, displayBlob = null) {
      return {
         id: 'id-' + generateId(),
         file: file,
-        dataUrl: URL.createObjectURL(file),
+        dataUrl: URL.createObjectURL(displayBlob || file),
         date: date, // Date object or null
         lat: lat,
         lon: lon,

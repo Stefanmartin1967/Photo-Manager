@@ -1,5 +1,6 @@
 import './style.css'
 import exifr from 'exifr'
+import heic2any from 'heic2any'
 import { createIcons, ImagePlus, Layers, ArrowRightLeft, Save, Share2, Minus, Plus } from 'lucide'
 import * as POIManager from './modules/poiManager.js'
 import * as PhotoManager from './modules/photoManager.js'
@@ -99,10 +100,14 @@ import * as ThemeManager from './modules/themeManager.js'
             const files = Array.from(e.target.files);
             const newPhotos = [];
 
+            // Add loading state or UI indicator if dealing with many HEIC files
+            const isHeic = (filename) => /\.(heic|heif)$/i.test(filename);
+
             for (const file of files) {
                 let date = null;
                 let lat = null;
                 let lon = null;
+                let displayBlob = null;
 
                 try {
                     // Force reading GPS data to ensure mobile devices extract it correctly
@@ -124,7 +129,25 @@ import * as ThemeManager from './modules/themeManager.js'
                     console.warn("Pas de métadonnées pour", file.name, err);
                 }
 
-                const photoObj = PhotoManager.createPhotoObject(file, date, lat, lon);
+                if (isHeic(file.name)) {
+                    try {
+                        const convertedBlob = await heic2any({
+                            blob: file,
+                            toType: "image/jpeg",
+                            quality: 0.8
+                        });
+
+                        // Handle potential array of blobs from heic2any
+                        displayBlob = Array.isArray(convertedBlob) ? convertedBlob[0] : convertedBlob;
+                    } catch (err) {
+                        console.warn("Erreur de conversion HEIC pour", file.name, err);
+                        // If conversion fails, we skip this file or use the original one,
+                        // but it won't be displayed properly.
+                        continue;
+                    }
+                }
+
+                const photoObj = PhotoManager.createPhotoObject(file, date, lat, lon, displayBlob);
                 newPhotos.push(photoObj);
             }
 
