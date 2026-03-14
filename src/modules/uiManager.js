@@ -1,5 +1,5 @@
 import Sortable from 'sortablejs';
-import { createIcons, Info, Trash2, Route } from 'lucide';
+import { createIcons, Info, Trash2, Route, Check, Save } from 'lucide';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 
@@ -49,6 +49,20 @@ export function renderGallery(groups) {
         };
 
         header.appendChild(title);
+
+        // Group Save Button
+        const saveGroupBtn = document.createElement('button');
+        saveGroupBtn.className = 'save-group-btn';
+        saveGroupBtn.title = `Enregistrer le groupe : ${group.displayName}`;
+        saveGroupBtn.innerHTML = '<i data-lucide="save"></i>';
+        saveGroupBtn.onclick = () => {
+            const allPhotosFlat = window.__getAllPhotosFlatForExport ? window.__getAllPhotosFlatForExport() : [];
+            // Retrieve only photos of this group
+            downloadPhotosAsZip(group.photos, group.customName || group.displayName, allPhotosFlat);
+        };
+
+        header.appendChild(saveGroupBtn);
+
         groupEl.appendChild(header);
 
         // List
@@ -90,7 +104,9 @@ export function renderGallery(groups) {
             icons: {
                 Info,
                 Route,
-                Trash2
+                Trash2,
+                Check,
+                Save
             }
         });
     } catch (e) {
@@ -181,19 +197,54 @@ export async function triggerDownload(allPhotosFlat) {
         }
     }
 
-    const albumName = prompt("Nom d'album :", defaultName);
-    if (!albumName) return; // User cancelled
+    // Pass the default name to download function to avoid prompting twice
+    // Collect photo objects directly from allPhotosFlat based on the visible cards
+    const photosToDownload = Array.from(cards).map((card, index) => {
+        const photoId = card.id;
+        const photoObj = allPhotosFlat.find(p => p.id === photoId);
+        return photoObj ? { ...photoObj, finalName: card.querySelector('.photo-info').innerText.trim() } : null;
+    }).filter(p => p !== null);
+
+    await downloadPhotosAsZip(photosToDownload, defaultName, allPhotosFlat);
+}
+
+// Utility to download a specific array of photo objects as a ZIP
+async function downloadPhotosAsZip(photos, albumNameDefault, allPhotosFlatContext) {
+    if (!photos || photos.length === 0) {
+        alert("Aucune photo à enregistrer dans ce groupe.");
+        return;
+    }
+
+    // Allow user to confirm or change the album name
+    const albumName = prompt("Nom d'album :", albumNameDefault);
+    if (!albumName) return;
 
     const zip = new JSZip();
 
-    cards.forEach(card => {
-        const photoId = card.id;
-        const name = card.querySelector('.photo-info').innerText.trim() + ".jpg";
+    photos.forEach((photo, index) => {
+        // Find the file extension from the original file (to preserve .heic, .png, etc.)
+        // If file doesn't exist, fallback to .jpg
+        let extension = 'jpg';
+        let fileToZip = photo.file;
 
-        // Find original file in the flat list
-        const photoObj = allPhotosFlat.find(p => p.id === photoId);
-        if (photoObj && photoObj.file) {
-            zip.file(name, photoObj.file);
+        if (!fileToZip && allPhotosFlatContext) {
+             const contextPhoto = allPhotosFlatContext.find(p => p.id === photo.id);
+             if (contextPhoto && contextPhoto.file) fileToZip = contextPhoto.file;
+        }
+
+        if (fileToZip && fileToZip.name) {
+             const parts = fileToZip.name.split('.');
+             if (parts.length > 1) {
+                 extension = parts.pop();
+             }
+        }
+
+        // Generate a valid final name. If photo.finalName is missing, use a sequential fallback so files don't overwrite each other
+        const baseName = photo.finalName || photo.customName || `Photo_${String(index + 1).padStart(3, '0')}`;
+        const name = `${baseName}.${extension}`;
+
+        if (fileToZip) {
+            zip.file(name, fileToZip);
         }
     });
 
@@ -249,6 +300,35 @@ export function showCompareModal(selectedImages) {
                 info.onkeydown = null;
             }
 
+            // Mode comparaison: Add Validate Button ("V")
+            const cardControls = clone.querySelector('.card-controls');
+            if (cardControls) {
+                const validateBtn = document.createElement('button');
+                validateBtn.className = 'validate-btn';
+                validateBtn.title = 'Valider (retirer de la comparaison)';
+                validateBtn.innerHTML = '<i data-lucide="check"></i>';
+
+                // Style overrides for comparison mode validate button
+                validateBtn.style.color = 'var(--brand)';
+
+                validateBtn.onclick = () => {
+                    // Remove from our local cards array
+                    cards = cards.filter(c => c.id !== originalCard.id);
+
+                    // Deselect in main gallery
+                    const mainGalleryCard = document.getElementById(originalCard.id);
+                    if (mainGalleryCard) {
+                        mainGalleryCard.classList.remove('selected');
+                    }
+
+                    // Re-render the grid
+                    renderGrid();
+                };
+
+                // Insert as the first button
+                cardControls.insertBefore(validateBtn, cardControls.firstChild);
+            }
+
             // Re-attach actions
             const deleteBtn = clone.querySelector('.delete-btn');
             if (deleteBtn) {
@@ -290,7 +370,8 @@ export function showCompareModal(selectedImages) {
                 icons: {
                     Info,
                     Route,
-                    Trash2
+                    Trash2,
+                    Check
                 }
             });
         } catch (e) {

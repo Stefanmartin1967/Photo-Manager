@@ -266,23 +266,10 @@ export function extractToTrajet(photoId) {
 
     if (group.photos.length === 0) {
         groups.splice(gIndex, 1, newTrajet);
-    }
-    else if (pIndex === group.photos.length) {
-        groups.splice(gIndex + 1, 0, newTrajet);
-    }
-    else if (pIndex === 0) {
+    } else {
+        // Insert the new Trajet group right before the original group
+        // which prevents the original group from being split in two.
         groups.splice(gIndex, 0, newTrajet);
-    }
-    else {
-        // Split
-        const remainingPhotos = group.photos.splice(pIndex);
-        const newGroupAfter = {
-            ...group,
-            id: 'g-' + generateId(),
-            photos: remainingPhotos
-        };
-        remainingPhotos.forEach(p => photoIdToGroup.set(p.id, newGroupAfter));
-        groups.splice(gIndex + 1, 0, newTrajet, newGroupAfter);
     }
 }
 
