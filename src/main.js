@@ -23,13 +23,19 @@ import * as StorageManager from './modules/storageManager.js'
         }
     });
 
+    // Debounce function to prevent hammering IndexedDB on every tiny UI change
+    let saveTimeout = null;
     const updateStateAndUI = () => {
         const groupsToRender = PhotoManager.getGroups();
         UIManager.renderGallery(groupsToRender);
-        StorageManager.saveState({
-            groups: PhotoManager.getRawGroups(),
-            groupingRadius: PhotoManager.getGroupingRadius()
-        });
+
+        if (saveTimeout) clearTimeout(saveTimeout);
+        saveTimeout = setTimeout(() => {
+            StorageManager.saveState({
+                groups: PhotoManager.getRawGroups(),
+                groupingRadius: PhotoManager.getGroupingRadius()
+            });
+        }, 1000); // Wait 1 second after last UI interaction before writing to DB
     };
 
     // 1. Initialisation Thème
@@ -177,6 +183,9 @@ import * as StorageManager from './modules/storageManager.js'
             UIManager.renderGallery(PhotoManager.getGroups());
         }
     }
+
+    // Expose allPhotosFlat to window for uiManager's group-level zip exports
+    window.__getAllPhotosFlatForExport = PhotoManager.getAllPhotosFlat;
 
     // Actions des boutons
     const saveBtn = document.getElementById('saveBtn');
