@@ -60,12 +60,59 @@ export function createPhotoObject(file, date, lat, lon, displayBlob = null) {
      return {
         id: 'id-' + generateId(),
         file: file,
+        displayBlob: displayBlob, // Save reference to recreate object URL later
         dataUrl: URL.createObjectURL(displayBlob || file),
         date: date, // Date object or null
         lat: lat,
         lon: lon,
         customName: null
     };
+}
+
+export function getRawGroups() {
+    return groups;
+}
+
+export function restoreState(savedState) {
+    if (!savedState || !savedState.groups) return false;
+
+    // Cleanup old object URLs if any exist in the current session
+    groups.forEach(g => {
+        g.photos.forEach(p => {
+            if (p.dataUrl && !p.dataUrl.startsWith('data:')) {
+                URL.revokeObjectURL(p.dataUrl);
+            }
+        });
+    });
+
+    setGroupingRadius(savedState.groupingRadius || DEFAULT_GROUPING_RADIUS);
+
+    groups = savedState.groups;
+    photoIdToGroup.clear();
+
+    // Rebuild data URLs and lookup map
+    groups.forEach(g => {
+        g.photos.forEach(photo => {
+            photoIdToGroup.set(photo.id, g);
+            // Re-create temporary URLs from the restored blobs
+            photo.dataUrl = URL.createObjectURL(photo.displayBlob || photo.file);
+        });
+    });
+
+    return true;
+}
+
+export function clearAll() {
+    groups.forEach(g => {
+        g.photos.forEach(p => {
+            if (p.dataUrl && !p.dataUrl.startsWith('data:')) {
+                URL.revokeObjectURL(p.dataUrl);
+            }
+        });
+    });
+    groups = [];
+    photoIdToGroup.clear();
+    setGroupingRadius(DEFAULT_GROUPING_RADIUS);
 }
 
 export function addPhotos(newPhotoObjects, pois) {

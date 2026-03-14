@@ -1,11 +1,12 @@
 import './style.css'
 import exifr from 'exifr'
 import heic2any from 'heic2any'
-import { createIcons, ImagePlus, Layers, ArrowRightLeft, Save, Share2, Minus, Plus } from 'lucide'
+import { createIcons, ImagePlus, Layers, ArrowRightLeft, Save, Share2, Minus, Plus, Trash2 } from 'lucide'
 import * as POIManager from './modules/poiManager.js'
 import * as PhotoManager from './modules/photoManager.js'
 import * as UIManager from './modules/uiManager.js'
 import * as ThemeManager from './modules/themeManager.js'
+import * as StorageManager from './modules/storageManager.js'
 
 (async () => {
     // 0. Initialisation Lucide Icons
@@ -17,9 +18,19 @@ import * as ThemeManager from './modules/themeManager.js'
             Save,
             Share2,
             Minus,
-            Plus
+            Plus,
+            Trash2
         }
     });
+
+    const updateStateAndUI = () => {
+        const groupsToRender = PhotoManager.getGroups();
+        UIManager.renderGallery(groupsToRender);
+        StorageManager.saveState({
+            groups: PhotoManager.getRawGroups(),
+            groupingRadius: PhotoManager.getGroupingRadius()
+        });
+    };
 
     // 1. Initialisation Thème
     ThemeManager.init();
@@ -27,27 +38,27 @@ import * as ThemeManager from './modules/themeManager.js'
     // 2. Chargement des POIs
     await POIManager.loadPOIs();
 
-    // 3. Initialisation UI
+    // 3. Initialisation UI et Restauration
     UIManager.initGallery('default-gallery', {
         onMove: (photoId, targetGroupId, newIndex) => {
             PhotoManager.movePhoto(photoId, targetGroupId, newIndex);
-            UIManager.renderGallery(PhotoManager.getGroups());
+            updateStateAndUI();
         },
         onRenameGroup: (groupId, newName) => {
             PhotoManager.renameGroup(groupId, newName);
-            UIManager.renderGallery(PhotoManager.getGroups());
+            updateStateAndUI();
         },
         onRenamePhoto: (photoId, newName) => {
             PhotoManager.renamePhoto(photoId, newName);
-            UIManager.renderGallery(PhotoManager.getGroups());
+            updateStateAndUI();
         },
         onExtract: (photoId) => {
             PhotoManager.extractToTrajet(photoId);
-            UIManager.renderGallery(PhotoManager.getGroups());
+            updateStateAndUI();
         },
         onDelete: (photoId) => {
             PhotoManager.removePhoto(photoId);
-            UIManager.renderGallery(PhotoManager.getGroups());
+            updateStateAndUI();
         }
     });
 
@@ -65,7 +76,7 @@ import * as ThemeManager from './modules/themeManager.js'
 
         // Re-cluster
         PhotoManager.reorganizeAllPhotos(POIManager.getPois());
-        UIManager.renderGallery(PhotoManager.getGroups());
+        updateStateAndUI();
     };
 
     if (radiusInput && radiusMinus && radiusPlus) {
@@ -152,10 +163,19 @@ import * as ThemeManager from './modules/themeManager.js'
             }
 
             PhotoManager.addPhotos(newPhotos, POIManager.getPois());
-            UIManager.renderGallery(PhotoManager.getGroups());
+            updateStateAndUI();
 
             e.target.value = ''; // Reset input
         });
+    }
+
+    // Load initial state
+    const savedState = await StorageManager.loadState();
+    if (savedState) {
+        if (PhotoManager.restoreState(savedState)) {
+            if (radiusInput) radiusInput.value = PhotoManager.getGroupingRadius();
+            UIManager.renderGallery(PhotoManager.getGroups());
+        }
     }
 
     // Actions des boutons
@@ -217,6 +237,19 @@ import * as ThemeManager from './modules/themeManager.js'
                 }
             } else {
                 alert("Le partage de fichiers n'est pas supporté sur ce navigateur.");
+            }
+        };
+    }
+
+    // Clear Button Logic
+    const clearBtn = document.getElementById('clearBtn');
+    if (clearBtn) {
+        clearBtn.onclick = async () => {
+            if (confirm("Voulez-vous vraiment effacer le projet en cours ? Cette action supprimera toutes les photos et groupes sauvegardés dans votre navigateur.")) {
+                PhotoManager.clearAll();
+                await StorageManager.clearState();
+                UIManager.renderGallery([]);
+                if (radiusInput) radiusInput.value = PhotoManager.getGroupingRadius();
             }
         };
     }
