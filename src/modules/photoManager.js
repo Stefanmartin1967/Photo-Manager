@@ -147,7 +147,19 @@ function clusterPhotos(photos, pois) {
         let sameGroup = false;
         if (currentGroup && currentGroup.type === type) {
             if (type === 'TRAJET') {
-                sameGroup = true;
+                // For 'TRAJET', check distance with the last photo in the group
+                const lastPhoto = currentGroup.photos[currentGroup.photos.length - 1];
+                if (lastPhoto && lastPhoto.lat != null && lastPhoto.lon != null && photo.lat != null && photo.lon != null) {
+                    const dist = calculateHaversineDistance(lastPhoto.lat, lastPhoto.lon, photo.lat, photo.lon);
+                    // Only group them together if the distance is within groupingRadius
+                    // or if calculateHaversineDistance returns NaN (failsafe)
+                    if (isNaN(dist) || dist <= groupingRadius) {
+                        sameGroup = true;
+                    }
+                } else {
+                    // If either photo lacks coordinates, group them together to avoid excessive fragmentation
+                    sameGroup = true;
+                }
             } else {
                 // Same POI?
                 if (currentGroup.poi.name === nearest.name) {
@@ -202,7 +214,22 @@ function mergeAdjacentGroups() {
         let canMerge = false;
         if (curr.type === next.type) {
              if (curr.type === 'TRAJET') {
-                 if (!curr.customName && !next.customName) canMerge = true;
+                 if (!curr.customName && !next.customName) {
+                     // Only merge if the last photo of the current group and the first photo of the next group
+                     // are close enough (within groupingRadius).
+                     const lastPhoto = curr.photos[curr.photos.length - 1];
+                     const firstPhotoNext = next.photos[0];
+
+                     if (lastPhoto && firstPhotoNext && lastPhoto.lat != null && lastPhoto.lon != null && firstPhotoNext.lat != null && firstPhotoNext.lon != null) {
+                         const dist = calculateHaversineDistance(lastPhoto.lat, lastPhoto.lon, firstPhotoNext.lat, firstPhotoNext.lon);
+                         if (isNaN(dist) || dist <= groupingRadius) {
+                             canMerge = true;
+                         }
+                     } else {
+                         // If either group's boundary photo lacks coordinates, we merge them
+                         canMerge = true;
+                     }
+                 }
              } else {
                  if (curr.poi.name === next.poi.name && !curr.customName && !next.customName) {
                      canMerge = true;
