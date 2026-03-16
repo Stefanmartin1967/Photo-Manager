@@ -18,12 +18,15 @@
         "Coordonnées GPS": "33.827050, 11.046220",
         "Latitude": 33.82705,
         "Longitude": 11.04622,
-        "Description": "Très bel hôtel 4 *, si vous voulez manger local, un coin Djerbie est présent à chaque repas. Soirée Djerbienne le dimanche, journée tunisienne le jeudi, avec entre autre un marché tunisien en journée",
+        "Description": "Très bel hôtel 4 *, si vous voulez manger local, un coin Djerbie est présent à chaque repas. Soirée Djerbienne le dimanche, journée tunisienne le jeudi, avec entre autre un marché tunisien en journée\nPiscine actuellement fermée",
         "Source": "https://www.seabelhotels.com/fr/seabel-rym-beach/accueil/",
-        "Temps de visite": null,
-        "Prix d'entrée": null,
-        "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE67RPHVJVH6A0PC0ZWD"
+        "Temps de visite": "01:00",
+        "Prix d'entrée": 0,
+        "Desc_wpt": "Réouverture de la piscine le 16 mars. Elle se remplit lentement",
+        "HW_ID": "HW-01K77WPE67RPHVJVH6A0PC0ZWD",
+        "planifieCounter": 1,
+        "vu": true,
+        "Notes_internes": "Test"
       }
     },
     {
@@ -48,7 +51,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6722XTDVPGCQTPPBXR"
+        "HW_ID": "HW-01K77WPE6722XTDVPGCQTPPBXR",
+        "planifieCounter": 1,
+        "vu": true
       }
     },
     {
@@ -98,7 +103,14 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE671G6V27VYYNMJV2NC"
+        "HW_ID": "HW-01K77WPE671G6V27VYYNMJV2NC",
+        "planifieCounter": 1,
+        "vu": true,
+        "photos": [
+          "photos/poi_HW-01K77WPE671G6V27VYYNMJV2NC_1771497287806.jpg",
+          "photos/poi_HW-01K77WPE671G6V27VYYNMJV2NC_1771497289182.jpg",
+          "photos/poi_HW-01K77WPE671G6V27VYYNMJV2NC_1771497290453.jpg"
+        ]
       }
     },
     {
@@ -123,7 +135,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE67YEYJ337ADV7QBX5P"
+        "HW_ID": "HW-01K77WPE67YEYJ337ADV7QBX5P",
+        "planifieCounter": 1
       }
     },
     {
@@ -148,7 +161,15 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6770BXCP2SW1Z2DTA2"
+        "HW_ID": "HW-01K77WPE6770BXCP2SW1Z2DTA2",
+        "planifieCounter": 1,
+        "vu": true,
+        "photos": [
+          "photos/poi_HW-01K77WPE6770BXCP2SW1Z2DTA2_1771497320289.jpg",
+          "photos/poi_HW-01K77WPE6770BXCP2SW1Z2DTA2_1771497321290.jpg",
+          "photos/poi_HW-01K77WPE6770BXCP2SW1Z2DTA2_1771497322560.jpg",
+          "photos/poi_HW-01K77WPE6770BXCP2SW1Z2DTA2_1771497323648.jpg"
+        ]
       }
     },
     {
@@ -173,7 +194,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE67MSESGPPZ5CAD0XTZ"
+        "HW_ID": "HW-01K77WPE67MSESGPPZ5CAD0XTZ",
+        "planifieCounter": 1
       }
     },
     {
@@ -181,8 +203,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          11.029028,
-          33.798472
+          11.028802710036706,
+          33.79811118269014
         ]
       },
       "properties": {
@@ -198,7 +220,10 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE68SW9XWBFFCRBWXZYM"
+        "HW_ID": "HW-01K77WPE68SW9XWBFFCRBWXZYM",
+        "planifieCounter": 1,
+        "lat": 33.79811118269014,
+        "lng": 11.028802710036706
       }
     },
     {
@@ -223,7 +248,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE68SSRHFM5TYYA7F5YF"
+        "HW_ID": "HW-01K77WPE68SSRHFM5TYYA7F5YF",
+        "planifieCounter": 1,
+        "vu": true
       }
     },
     {
@@ -231,8 +258,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          11.021528,
-          33.793694
+          11.021607244300704,
+          33.793757704808506
         ]
       },
       "properties": {
@@ -248,7 +275,10 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6805D82JWX44QAVVV9"
+        "HW_ID": "HW-01K77WPE6805D82JWX44QAVVV9",
+        "planifieCounter": 1,
+        "lat": 33.793757704808506,
+        "lng": 11.021607244300704
       }
     },
     {
@@ -273,7 +303,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE682HMFVV693F7BFA2B"
+        "HW_ID": "HW-01K77WPE682HMFVV693F7BFA2B",
+        "planifieCounter": 1
       }
     },
     {
@@ -298,7 +329,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE68ZXYA0Z9T3QEN0VYW"
+        "HW_ID": "HW-01K77WPE68ZXYA0Z9T3QEN0VYW",
+        "planifieCounter": 1
       }
     },
     {
@@ -323,7 +355,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE686WHQD4VDZT4Y6VK5"
+        "HW_ID": "HW-01K77WPE686WHQD4VDZT4Y6VK5",
+        "planifieCounter": 1
       }
     },
     {
@@ -373,7 +406,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE68FAWKXDY3R89R5KTF"
+        "HW_ID": "HW-01K77WPE68FAWKXDY3R89R5KTF",
+        "planifieCounter": 1
       }
     },
     {
@@ -398,7 +432,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE68MMPS9ZVR6XTV9J61"
+        "HW_ID": "HW-01K77WPE68MMPS9ZVR6XTV9J61",
+        "planifieCounter": 1,
+        "vu": true
       }
     },
     {
@@ -423,7 +459,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE68Q2NTEKRWSPCDZZGE"
+        "HW_ID": "HW-01K77WPE68Q2NTEKRWSPCDZZGE",
+        "planifieCounter": 1,
+        "vu": true
       }
     },
     {
@@ -448,7 +486,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE68JWCXJ0TCG1EDSB7A"
+        "HW_ID": "HW-01K77WPE68JWCXJ0TCG1EDSB7A",
+        "planifieCounter": 1,
+        "vu": true
       }
     },
     {
@@ -498,7 +538,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE682TM0N643W207BGNE"
+        "HW_ID": "HW-01K77WPE682TM0N643W207BGNE",
+        "planifieCounter": 1
       }
     },
     {
@@ -523,7 +564,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE69FQZ84EBV7HCETGM2"
+        "HW_ID": "HW-01K77WPE69FQZ84EBV7HCETGM2",
+        "planifieCounter": 1
       }
     },
     {
@@ -548,7 +590,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE69627R8AECX3S372Z3"
+        "HW_ID": "HW-01K77WPE69627R8AECX3S372Z3",
+        "planifieCounter": 1
       }
     },
     {
@@ -623,7 +666,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE699CBRC4PV1ARJPXKM"
+        "HW_ID": "HW-01K77WPE699CBRC4PV1ARJPXKM",
+        "planifieCounter": 1
       }
     },
     {
@@ -648,7 +692,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE69NZS5NFTFBPG6V291"
+        "HW_ID": "HW-01K77WPE69NZS5NFTFBPG6V291",
+        "planifieCounter": 1
       }
     },
     {
@@ -673,7 +718,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": "Mosquée illustrant parfaitement le savoir-faire architectural insulaire, capable de conjuguer forme, fonction et spiritualité dans un cadre à la fois humble et monumental.",
-        "HW_ID": "HW-01K77WPE697JA8WM3N71KEFY6S"
+        "HW_ID": "HW-01K77WPE697JA8WM3N71KEFY6S",
+        "planifieCounter": 1,
+        "vu": false
       }
     },
     {
@@ -723,7 +770,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE69RBE6FB0RR05GEJM3"
+        "HW_ID": "HW-01K77WPE69RBE6FB0RR05GEJM3",
+        "planifieCounter": 1,
+        "vu": false
       }
     },
     {
@@ -773,7 +822,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE697PHS21NP9P0JGJ6F"
+        "HW_ID": "HW-01K77WPE697PHS21NP9P0JGJ6F",
+        "planifieCounter": 1
       }
     },
     {
@@ -798,7 +848,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE69CKZWJHD3JAJT874K"
+        "HW_ID": "HW-01K77WPE69CKZWJHD3JAJT874K",
+        "planifieCounter": 1,
+        "vu": false
       }
     },
     {
@@ -823,7 +875,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6A22WXDRBSQ8AEW7BR"
+        "HW_ID": "HW-01K77WPE6A22WXDRBSQ8AEW7BR",
+        "planifieCounter": 1,
+        "vu": false
       }
     },
     {
@@ -898,7 +952,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": "Mosquée Ibadite restaurée en août 2025",
-        "HW_ID": "HW-01K77WPE6AFSTY1DA2XVPB3MVC"
+        "HW_ID": "HW-01K77WPE6AFSTY1DA2XVPB3MVC",
+        "planifieCounter": 1,
+        "vu": true
       }
     },
     {
@@ -973,7 +1029,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6AA25DRECXWRNXFZ4C"
+        "HW_ID": "HW-01K77WPE6AA25DRECXWRNXFZ4C",
+        "planifieCounter": 1,
+        "vu": false
       }
     },
     {
@@ -998,7 +1056,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": "Mosquée qui se dresse isolée au milieu d’un terrain pierreux planté de quelques oliviers.",
-        "HW_ID": "HW-01K77WPE6AS77NE3CRGHPYHJSE"
+        "HW_ID": "HW-01K77WPE6AS77NE3CRGHPYHJSE",
+        "planifieCounter": 1,
+        "vu": true
       }
     },
     {
@@ -1023,7 +1083,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6AB83SMA3RRSYH0SK9"
+        "HW_ID": "HW-01K77WPE6AB83SMA3RRSYH0SK9",
+        "planifieCounter": 0
       }
     },
     {
@@ -1048,7 +1109,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6A7EGYFGG7XNYT8AYC"
+        "HW_ID": "HW-01K77WPE6A7EGYFGG7XNYT8AYC",
+        "planifieCounter": 1,
+        "vu": true
       }
     },
     {
@@ -1098,7 +1161,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6A3AYDG7D68R9A0JBT"
+        "HW_ID": "HW-01K77WPE6A3AYDG7D68R9A0JBT",
+        "planifieCounter": 1
       }
     },
     {
@@ -1148,7 +1212,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6BNSENDPYVFJT2TW7Y"
+        "HW_ID": "HW-01K77WPE6BNSENDPYVFJT2TW7Y",
+        "planifieCounter": 0
       }
     },
     {
@@ -1173,7 +1238,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6BE6FFWWHJH6DSSZQ6"
+        "HW_ID": "HW-01K77WPE6BE6FFWWHJH6DSSZQ6",
+        "planifieCounter": 1,
+        "vu": true
       }
     },
     {
@@ -1198,7 +1265,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6BE2HDNBY0FSWSNRTH"
+        "HW_ID": "HW-01K77WPE6BE2HDNBY0FSWSNRTH",
+        "planifieCounter": 1,
+        "vu": true
       }
     },
     {
@@ -1223,7 +1292,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6BZYXKCYCZXB9RG3RP"
+        "HW_ID": "HW-01K77WPE6BZYXKCYCZXB9RG3RP",
+        "planifieCounter": 0
       }
     },
     {
@@ -1273,7 +1343,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6B2CT1A4B58N917MXQ"
+        "HW_ID": "HW-01K77WPE6B2CT1A4B58N917MXQ",
+        "planifieCounter": 1
       }
     },
     {
@@ -1298,7 +1369,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": "Mosquée se trouvant dans un environnement semi-rural, à proximité de petites voies et de terrains sablonneux.",
-        "HW_ID": "HW-01K77WPE6BAJG9QADZMRDXPWTB"
+        "HW_ID": "HW-01K77WPE6BAJG9QADZMRDXPWTB",
+        "planifieCounter": 1,
+        "vu": true
       }
     },
     {
@@ -1373,7 +1446,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6B49HSRPBACEWDY95T"
+        "HW_ID": "HW-01K77WPE6B49HSRPBACEWDY95T",
+        "planifieCounter": 1,
+        "vu": true
       }
     },
     {
@@ -1423,7 +1498,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6BG5X8YCCG07AEVQY8"
+        "HW_ID": "HW-01K77WPE6BG5X8YCCG07AEVQY8",
+        "planifieCounter": 0
       }
     },
     {
@@ -1473,7 +1549,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6BGKED1DHN669J64P7"
+        "HW_ID": "HW-01K77WPE6BGKED1DHN669J64P7",
+        "planifieCounter": 0
       }
     },
     {
@@ -1498,7 +1575,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6C4QCW255MDZKT0RHK"
+        "HW_ID": "HW-01K77WPE6C4QCW255MDZKT0RHK",
+        "planifieCounter": 2
       }
     },
     {
@@ -1523,32 +1601,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6CVR05TNW29PD4ZT89"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          10.942283,
-          33.751786
-        ]
-      },
-      "properties": {
-        "Nom du site FR": "Mosquée Ibrahim El-Kalil Dhhira",
-        "Nom du site arabe": "جامع إبراهيم الخليل الذّحيرة",
-        "Catégorie": "Mosquée",
-        "Zone": "Sedouikech",
-        "Coordonnées GPS": "33.751786, 10.942283",
-        "Latitude": 33.751786,
-        "Longitude": 10.942283,
-        "Description": null,
-        "Source": null,
-        "Temps de visite": null,
-        "Prix d'entrée": null,
-        "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6CV9R0X85VEA6135CQ"
+        "HW_ID": "HW-01K77WPE6CVR05TNW29PD4ZT89",
+        "planifieCounter": 0
       }
     },
     {
@@ -1573,7 +1627,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6CBWN7QDW6G4G73RWZ"
+        "HW_ID": "HW-01K77WPE6CBWN7QDW6G4G73RWZ",
+        "planifieCounter": 0
       }
     },
     {
@@ -1598,7 +1653,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6CC0RY56ECB2RCTGJP"
+        "HW_ID": "HW-01K77WPE6CC0RY56ECB2RCTGJP",
+        "planifieCounter": 2
       }
     },
     {
@@ -1723,7 +1779,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6CP8P9RJP202ZRWJQJ"
+        "HW_ID": "HW-01K77WPE6CP8P9RJP202ZRWJQJ",
+        "planifieCounter": 0
       }
     },
     {
@@ -1848,7 +1905,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6C4GTHCK9Y64EFE8SP"
+        "HW_ID": "HW-01K77WPE6C4GTHCK9Y64EFE8SP",
+        "planifieCounter": 1
       }
     },
     {
@@ -1923,7 +1981,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE679NFG1VG3IJZSTSYSZNL5"
+        "HW_ID": "HW-01KJABRN0DWM059C795C8SSD8C",
+        "planifieCounter": 1
       }
     },
     {
@@ -1973,7 +2032,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6DN850VCNS22C48QFT"
+        "HW_ID": "HW-01K77WPE6DN850VCNS22C48QFT",
+        "planifieCounter": 1
       }
     },
     {
@@ -1998,7 +2058,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6DT0F6KA225EP7PSK9"
+        "HW_ID": "HW-01K77WPE6DT0F6KA225EP7PSK9",
+        "planifieCounter": 1
       }
     },
     {
@@ -2048,7 +2109,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6DAMFCVRGASY61DKJE"
+        "HW_ID": "HW-01K77WPE6DAMFCVRGASY61DKJE",
+        "planifieCounter": 0
       }
     },
     {
@@ -2073,7 +2135,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6DWEFD7GCZ7SCRFQA9"
+        "HW_ID": "HW-01K77WPE6DWEFD7GCZ7SCRFQA9",
+        "planifieCounter": 1
       }
     },
     {
@@ -2123,7 +2186,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6D5GR4P97YHEN41JNS"
+        "HW_ID": "HW-01K77WPE6D5GR4P97YHEN41JNS",
+        "planifieCounter": 1
       }
     },
     {
@@ -2198,7 +2262,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6D2K1P48SM77XZNYQH"
+        "HW_ID": "HW-01K77WPE6D2K1P48SM77XZNYQH",
+        "planifieCounter": 0
       }
     },
     {
@@ -2223,7 +2288,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6D6A1W50RR0KNXRAGH"
+        "HW_ID": "HW-01K77WPE6D6A1W50RR0KNXRAGH",
+        "planifieCounter": 1
       }
     },
     {
@@ -2273,7 +2339,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6EPM3A4QJN2D566KZ5"
+        "HW_ID": "HW-01K77WPE6EPM3A4QJN2D566KZ5",
+        "planifieCounter": 1
       }
     },
     {
@@ -2298,7 +2365,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6E2G25V2R888QZDP0X"
+        "HW_ID": "HW-01K77WPE6E2G25V2R888QZDP0X",
+        "planifieCounter": 1
       }
     },
     {
@@ -2323,7 +2391,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE67QENOUULUUAA66DJQG7HW"
+        "HW_ID": "HW-01KJABRN0FEQVR2EN2M5SDKSYG",
+        "planifieCounter": 0
       }
     },
     {
@@ -2348,7 +2417,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE67OKJXQRY5JKPY5TLIPW46"
+        "HW_ID": "HW-01KJABRN0GH1K6QDXPRRKMDATB",
+        "planifieCounter": 0
       }
     },
     {
@@ -2423,7 +2493,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6EWBD679W4C2QRM2FA"
+        "HW_ID": "HW-01K77WPE6EWBD679W4C2QRM2FA",
+        "planifieCounter": 1
       }
     },
     {
@@ -2523,7 +2594,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6ECJK1CMJKYVNTKGGS"
+        "HW_ID": "HW-01K77WPE6ECJK1CMJKYVNTKGGS",
+        "planifieCounter": 1
       }
     },
     {
@@ -2748,7 +2820,10 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": "Mosquée proche de la mer, à proximité de Goose island djerba où vous pouvez faire diverses activités aquatiques",
-        "HW_ID": "HW-01K77WPE6F9K1DFXDYCR7CPAWN"
+        "HW_ID": "HW-01K77WPE6F9K1DFXDYCR7CPAWN",
+        "planifieCounter": 1,
+        "vu": true,
+        "photos": []
       }
     },
     {
@@ -2818,11 +2893,11 @@
         "Coordonnées GPS": "33.827750, 10.867722",
         "Latitude": 33.82775,
         "Longitude": 10.867722,
-        "Description": null,
-        "Source": null,
+        "Description": "Renseignée sous Google Maps mais apparemment, il ne doit rien y subsister, on ne voir rien sur la carte",
+        "Source": "",
         "Temps de visite": null,
-        "Prix d'entrée": null,
-        "Desc_wpt": null,
+        "Prix d'entrée": 0,
+        "Desc_wpt": "A vérifier si toujours existante",
         "HW_ID": "HW-01K77WPE6FZ42WKWV3QWS376RB"
       }
     },
@@ -2973,7 +3048,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6FTSXM87T9YTV7G4ME"
+        "HW_ID": "HW-01K77WPE6FTSXM87T9YTV7G4ME",
+        "planifieCounter": 2
       }
     },
     {
@@ -3023,7 +3099,10 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": "Mosquée et mausolée malékite de construction récente intégrant le mausolée",
-        "HW_ID": "HW-01K77WPE6F1C25NNH5RAR2JPF6"
+        "HW_ID": "HW-01K77WPE6F1C25NNH5RAR2JPF6",
+        "planifieCounter": 1,
+        "vu": true,
+        "photos": []
       }
     },
     {
@@ -3073,7 +3152,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": "Masquée et mausolée malékite de construction récente intégrant le mausolée",
-        "HW_ID": "HW-01K77WPE6G4S44DJQ98414C336"
+        "HW_ID": "HW-01K77WPE6G4S44DJQ98414C336",
+        "vu": true,
+        "planifieCounter": 0
       }
     },
     {
@@ -3169,7 +3250,7 @@
         "Latitude": 33.836389,
         "Longitude": 10.852306,
         "Description": "Située à Tarhdimess. Infos à rechercher.",
-        "Source": null,
+        "Source": "",
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
@@ -3223,7 +3304,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": "Mosquée ibadite devenue malékite construite en 967 de l’hégire, soit en 1560 de notre ère",
-        "HW_ID": "HW-01K77WPE6G6C1H17E6WP518B3J"
+        "HW_ID": "HW-01K77WPE6G6C1H17E6WP518B3J",
+        "planifieCounter": 1,
+        "vu": true
       }
     },
     {
@@ -3248,7 +3331,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": "Mosquée, mausolée et medersa (Ecole) coranique constriten en \n1076 de l’hégire, soit 1675 de notre ère",
-        "HW_ID": "HW-01K77WPE6GQX3PRD8TAKTDRNSZ"
+        "HW_ID": "HW-01K77WPE6GQX3PRD8TAKTDRNSZ",
+        "planifieCounter": 1,
+        "vu": true
       }
     },
     {
@@ -3298,7 +3383,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": "Mosquée hanafite puis malékite construite en 1560 de notre ère",
-        "HW_ID": "HW-01K77WPE6G6RDSP8C7C5WQVJCN"
+        "HW_ID": "HW-01K77WPE6G6RDSP8C7C5WQVJCN",
+        "planifieCounter": 1,
+        "vu": true
       }
     },
     {
@@ -3373,7 +3460,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": "Une des rares églises catholique de Djerba",
-        "HW_ID": "HW-01K77WPE6HV1767JVPMV1000YQ"
+        "HW_ID": "HW-01K77WPE6HV1767JVPMV1000YQ",
+        "planifieCounter": 1,
+        "vu": true
       }
     },
     {
@@ -3473,7 +3562,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": "Eglise grecque orthodoxe dédiée à Saint-Nicolas, patrons des enfants, mais aussi des marins, pêcheurs et commercçant",
-        "HW_ID": "HW-01K77WPE6H0HDCNZVRSJGSX5TF"
+        "HW_ID": "HW-01K77WPE6H0HDCNZVRSJGSX5TF",
+        "planifieCounter": 1,
+        "vu": true
       }
     },
     {
@@ -3523,7 +3614,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": "Dominant la côte nord de Houmt-Souk, la mosquée Sidi El-Bahri se dresse aujourd’hui comme un symbole de résilience. Reconstruite sur les ruines de l’édifice détruit en 2011, elle conserve la mémoire d’un sanctuaire trois fois centenaire dont le minaret seul avait survécu à la démolition. Sa silhouette blanche, son dôme discret et son phare vert rappellent la simplicité des mosquées maritimes djerbiennes. Autour d’elle, les tombes anciennes forment un manteau de silence : le passé veille encore, paisible, au seuil du présent.",
-        "HW_ID": "HW-01K77WPE6H365AYB72RWY40WZX"
+        "HW_ID": "HW-01K77WPE6H365AYB72RWY40WZX",
+        "planifieCounter": 1,
+        "vu": true
       }
     },
     {
@@ -3548,7 +3641,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6HCCSTW9QXDV73Q1SF"
+        "HW_ID": "HW-01K77WPE6HCCSTW9QXDV73Q1SF",
+        "planifieCounter": 1
       }
     },
     {
@@ -3623,7 +3717,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6H7K49FQ4NSR5ASHX8"
+        "HW_ID": "HW-01K77WPE6H7K49FQ4NSR5ASHX8",
+        "planifieCounter": 0
       }
     },
     {
@@ -3698,7 +3793,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6J23YSBPP5PMBBZ23Y"
+        "HW_ID": "HW-01K77WPE6J23YSBPP5PMBBZ23Y",
+        "planifieCounter": 1,
+        "vu": true
       }
     },
     {
@@ -3748,7 +3845,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6JZQWS751K2WV46RB2"
+        "HW_ID": "HW-01K77WPE6JZQWS751K2WV46RB2",
+        "planifieCounter": 0
       }
     },
     {
@@ -3773,7 +3871,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6J3TTHTXC560NEDQ24"
+        "HW_ID": "HW-01K77WPE6J3TTHTXC560NEDQ24",
+        "planifieCounter": 0
       }
     },
     {
@@ -3823,7 +3922,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6JARCBVAYJCW1B3B14"
+        "HW_ID": "HW-01K77WPE6JARCBVAYJCW1B3B14",
+        "planifieCounter": 1,
+        "vu": true
       }
     },
     {
@@ -3848,7 +3949,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6J38KA6V4M0KDZBJ15"
+        "HW_ID": "HW-01K77WPE6J38KA6V4M0KDZBJ15",
+        "planifieCounter": 0
       }
     },
     {
@@ -3898,7 +4000,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6JHY0DMFMJKW847EVZ"
+        "HW_ID": "HW-01K77WPE6JHY0DMFMJKW847EVZ",
+        "planifieCounter": 1
       }
     },
     {
@@ -3948,7 +4051,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6JDTSE0J7BXJFSCPX4"
+        "HW_ID": "HW-01K77WPE6JDTSE0J7BXJFSCPX4",
+        "planifieCounter": 0
       }
     },
     {
@@ -4148,7 +4252,7 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE67Y4VYJZGMCUMGUBS777ML"
+        "HW_ID": "HW-01KJABRN0HW8QW8YRNXWWWA8WB"
       }
     },
     {
@@ -4298,7 +4402,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6M5QZM1DZV18R4EDHR"
+        "HW_ID": "HW-01K77WPE6M5QZM1DZV18R4EDHR",
+        "planifieCounter": 1,
+        "vu": true
       }
     },
     {
@@ -4481,8 +4587,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          10.8065,
-          33.861917
+          10.806473154993117,
+          33.86202557545826
         ]
       },
       "properties": {
@@ -4498,7 +4604,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6M14K3331NK215THZS"
+        "HW_ID": "HW-01K77WPE6M14K3331NK215THZS",
+        "lat": 33.86202557545826,
+        "lng": 10.806473154993117
       }
     },
     {
@@ -4523,7 +4631,10 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6MXA1DKNG7R2XWZQGJ"
+        "HW_ID": "HW-01K77WPE6MXA1DKNG7R2XWZQGJ",
+        "planifieCounter": 1,
+        "vu": true,
+        "photos": []
       }
     },
     {
@@ -4548,7 +4659,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6MK0YGY2RG0RX2XX48"
+        "HW_ID": "HW-01K77WPE6MK0YGY2RG0RX2XX48",
+        "planifieCounter": 1
       }
     },
     {
@@ -4573,7 +4685,10 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6N293MG25FFQBH1G10"
+        "HW_ID": "HW-01K77WPE6N293MG25FFQBH1G10",
+        "planifieCounter": 1,
+        "vu": true,
+        "photos": []
       }
     },
     {
@@ -4598,7 +4713,10 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6N0ZBXJK23NVJ2MQPX"
+        "HW_ID": "HW-01K77WPE6N0ZBXJK23NVJ2MQPX",
+        "planifieCounter": 1,
+        "vu": true,
+        "photos": []
       }
     },
     {
@@ -4623,7 +4741,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6NHCHVH0JKDTF607DG"
+        "HW_ID": "HW-01K77WPE6NHCHVH0JKDTF607DG",
+        "planifieCounter": 1
       }
     },
     {
@@ -4648,7 +4767,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6NGJQHEKJE3M2T5W5Q"
+        "HW_ID": "HW-01K77WPE6NGJQHEKJE3M2T5W5Q",
+        "planifieCounter": 1
       }
     },
     {
@@ -4656,8 +4776,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          10.791056,
-          33.758056
+          10.794860611273545,
+          33.777147513068996
         ]
       },
       "properties": {
@@ -4665,15 +4785,16 @@
         "Nom du site arabe": "جامع الغولة",
         "Catégorie": "Mosquée",
         "Zone": "El Groa",
-        "Coordonnées GPS": "33.777194, 10.794861",
-        "Latitude": 33.758056,
-        "Longitude": 10.791056,
+        "Coordonnées GPS": "33.777147513068996, 10.794860611273545",
+        "Latitude": 33.777147513068996,
+        "Longitude": 10.794860611273545,
         "Description": null,
         "Source": null,
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6NQ35ND0B1DQGT4BQT"
+        "HW_ID": "HW-01K77WPE6NQ35ND0B1DQGT4BQT",
+        "planifieCounter": 1
       }
     },
     {
@@ -4698,7 +4819,10 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6N6A0YBFFKMQQNQH0E"
+        "HW_ID": "HW-01K77WPE6N6A0YBFFKMQQNQH0E",
+        "planifieCounter": 1,
+        "vu": true,
+        "photos": []
       }
     },
     {
@@ -4706,8 +4830,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          10.791053,
-          33.758048
+          10.791050841108836,
+          33.75818454061917
         ]
       },
       "properties": {
@@ -4715,15 +4839,16 @@
         "Nom du site arabe": "مسجد الخنيسة",
         "Catégorie": "Mosquée",
         "Zone": "El Groa",
-        "Coordonnées GPS": "33.758056, 10.791056",
-        "Latitude": 33.758048,
-        "Longitude": 10.791053,
+        "Coordonnées GPS": "33.75818454061917, 10.791050841108836",
+        "Latitude": 33.75818454061917,
+        "Longitude": 10.791050841108836,
         "Description": null,
         "Source": null,
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6NGZN849YA6V0EC1R0"
+        "HW_ID": "HW-01K77WPE6NGZN849YA6V0EC1R0",
+        "planifieCounter": 1
       }
     },
     {
@@ -4773,7 +4898,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6N1D1N6TK82WX52BNM"
+        "HW_ID": "HW-01K77WPE6N1D1N6TK82WX52BNM",
+        "planifieCounter": 1
       }
     },
     {
@@ -4798,7 +4924,10 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6NJ1X6TBWGCTV85QMM"
+        "HW_ID": "HW-01K77WPE6NJ1X6TBWGCTV85QMM",
+        "planifieCounter": 1,
+        "vu": true,
+        "photos": []
       }
     },
     {
@@ -4823,7 +4952,10 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6N6HF86MYJNJWFPNSV"
+        "HW_ID": "HW-01K77WPE6N6HF86MYJNJWFPNSV",
+        "planifieCounter": 1,
+        "vu": true,
+        "photos": []
       }
     },
     {
@@ -4848,7 +4980,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6NBNNW3DFHDZ0PFMX8"
+        "HW_ID": "HW-01K77WPE6NBNNW3DFHDZ0PFMX8",
+        "planifieCounter": 1
       }
     },
     {
@@ -4898,7 +5031,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6NZ91JPSJG4M3A7TNR"
+        "HW_ID": "HW-01K77WPE6NZ91JPSJG4M3A7TNR",
+        "planifieCounter": 1
       }
     },
     {
@@ -4923,7 +5057,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6ND38ZJ2GFV2K4NRTK"
+        "HW_ID": "HW-01K77WPE6ND38ZJ2GFV2K4NRTK",
+        "planifieCounter": 1,
+        "vu": true
       }
     },
     {
@@ -4948,7 +5084,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": "Ancienne mosquée ibadite wahbite rénovée récemment.",
-        "HW_ID": "HW-01K77WPE6P1NA9ZF5TF1DK9GD2"
+        "HW_ID": "HW-01K77WPE6P1NA9ZF5TF1DK9GD2",
+        "planifieCounter": 1
       }
     },
     {
@@ -4973,7 +5110,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": "Mosquée ibadite wahbite construite  au 4è siècle de l’hégire, ce qui correspond au 10è siècle de notre ère",
-        "HW_ID": "HW-01K77WPE6PDSWXWVZZR4ZDNXVX"
+        "HW_ID": "HW-01K77WPE6PDSWXWVZZR4ZDNXVX",
+        "planifieCounter": 1
       }
     },
     {
@@ -5023,7 +5161,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": "Mosquée ibadite wahbite rénovée, intialement construite sur le site d'un église byzantine.",
-        "HW_ID": "HW-01K77WPE6PP29CK1JR2H25ACNK"
+        "HW_ID": "HW-01K77WPE6PP29CK1JR2H25ACNK",
+        "planifieCounter": 1
       }
     },
     {
@@ -5048,7 +5187,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": "Ancienne mosquée ibadite wahbite rénovée récemment.",
-        "HW_ID": "HW-01K77WPE6PC9G02W8SX1JZX2HC"
+        "HW_ID": "HW-01K77WPE6PC9G02W8SX1JZX2HC",
+        "planifieCounter": 1
       }
     },
     {
@@ -5073,7 +5213,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": "Mosquée ibadite wahbite construite en 1046 de l’hégire, soit en 1637 de notre ère",
-        "HW_ID": "HW-01K77WPE6PKFFHK53AA0880TBZ"
+        "HW_ID": "HW-01K77WPE6PKFFHK53AA0880TBZ",
+        "planifieCounter": 1
       }
     },
     {
@@ -5098,7 +5239,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": "Mosquée ibadite wahbite dont la date de construction estimée se situe aux environs du 17ème siècle, entre 1680 et 1720.\nMonument historique classé (INP, 2022).",
-        "HW_ID": "HW-01K77WPE6PG0DA193W44FBQAHQ"
+        "HW_ID": "HW-01K77WPE6PG0DA193W44FBQAHQ",
+        "planifieCounter": 1
       }
     },
     {
@@ -5123,7 +5265,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": "Mosquée ibadite wahbite construite en 1117 de l’hégire, soit 1705 de notre ère",
-        "HW_ID": "HW-01K77WPE6PGSGH7AWKFRACMNSJ"
+        "HW_ID": "HW-01K77WPE6PGSGH7AWKFRACMNSJ",
+        "planifieCounter": 1
       }
     },
     {
@@ -5148,7 +5291,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": "Un des lieux de tournage de Star Wars",
-        "HW_ID": "HW-01K77WPE6PRETC07TQDNMAG54C"
+        "HW_ID": "HW-01K77WPE6PRETC07TQDNMAG54C",
+        "planifieCounter": 1
       }
     },
     {
@@ -5173,7 +5317,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": "Ancienne mosquée ibadite wahbite dont la construction remonte à 1040/1050 de l'hégire, soit au 17ème siècle de notre ère (1630/1640) avant d'être agandie au 19ème siècle\n",
-        "HW_ID": "HW-01K77WPE6P7XZY555VW8YDAVA0"
+        "HW_ID": "HW-01K77WPE6P7XZY555VW8YDAVA0",
+        "planifieCounter": 1
       }
     },
     {
@@ -5198,7 +5343,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": "A chercher, aucune info sur le net",
-        "HW_ID": "HW-01K77WPE6P30E9MGC3BE3KYHP6"
+        "HW_ID": "HW-01K77WPE6P30E9MGC3BE3KYHP6",
+        "planifieCounter": 1
       }
     },
     {
@@ -5223,7 +5369,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": "Ancienne mosquée servant aujourd'hui d'abri poour les pêcheurs. A servi de décor dans la saga Star Wars. Fresque Invader sur un de ses murs",
-        "HW_ID": "HW-01K77WPE6PN0QBJJWTRH1X9CJH"
+        "HW_ID": "HW-01K77WPE6PN0QBJJWTRH1X9CJH",
+        "planifieCounter": 1
       }
     },
     {
@@ -5248,7 +5395,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": "L'accès est restreint et demande des autorisations",
-        "HW_ID": "HW-01K77WPE6PGWRVHZ8H8CTQJ06X"
+        "HW_ID": "HW-01K77WPE6PGWRVHZ8H8CTQJ06X",
+        "planifieCounter": 1
       }
     },
     {
@@ -5273,7 +5421,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6P5C0194DPJWYMX9C1"
+        "HW_ID": "HW-01K77WPE6P5C0194DPJWYMX9C1",
+        "planifieCounter": 0,
+        "vu": true
       }
     },
     {
@@ -5298,7 +5448,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6P9JFRW9XXGN7P7FPX"
+        "HW_ID": "HW-01K77WPE6P9JFRW9XXGN7P7FPX",
+        "planifieCounter": 1,
+        "vu": false
       }
     },
     {
@@ -5311,7 +5463,7 @@
         ]
       },
       "properties": {
-        "Nom du site FR": "Mosquée Sidi Soufiane",
+        "Nom du site FR": "Mosquée Sidi Yati de Midoun",
         "Nom du site arabe": "مسجد سيدي سفيان",
         "Catégorie": "Mosquée",
         "Zone": "Taguermess",
@@ -5319,11 +5471,13 @@
         "Latitude": 33.816849,
         "Longitude": 11.016661,
         "Description": "Nom sur OSM : Mosquée Sidi Yati. A vérifier.",
-        "Source": null,
+        "Source": "",
         "Temps de visite": null,
-        "Prix d'entrée": null,
-        "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6QJNV1Q83SBNFKC88M"
+        "Prix d'entrée": 0,
+        "Desc_wpt": "",
+        "HW_ID": "HW-01K77WPE6QJNV1Q83SBNFKC88M",
+        "planifieCounter": 1,
+        "vu": true
       }
     },
     {
@@ -5348,7 +5502,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6QK25S6E6T5BG94JEM"
+        "HW_ID": "HW-01K77WPE6QK25S6E6T5BG94JEM",
+        "planifieCounter": 0
       }
     },
     {
@@ -5373,7 +5528,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6QR67710KWTHBD0C6V"
+        "HW_ID": "HW-01K77WPE6QR67710KWTHBD0C6V",
+        "planifieCounter": 1
       }
     },
     {
@@ -5423,7 +5579,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": "Mosquée d’une grande cohérence architecturale, typique des mosquées ibadites de Djerba ayant évolué au fil des siècles.",
-        "HW_ID": "HW-01K77WPE6Q0QEE8APATRE5K4MS"
+        "HW_ID": "HW-01K77WPE6Q0QEE8APATRE5K4MS",
+        "planifieCounter": 1,
+        "vu": true
       }
     },
     {
@@ -5448,7 +5606,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6QGFPEGPTZ1G59C9FZ"
+        "HW_ID": "HW-01K77WPE6QGFPEGPTZ1G59C9FZ",
+        "planifieCounter": 1
       }
     },
     {
@@ -5498,7 +5657,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6QS9TJZYHXPSJKW47P"
+        "HW_ID": "HW-01K77WPE6QS9TJZYHXPSJKW47P",
+        "planifieCounter": 1
       }
     },
     {
@@ -5598,7 +5758,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6QN6S4TSGEZQ6DQGXA"
+        "HW_ID": "HW-01K77WPE6QN6S4TSGEZQ6DQGXA",
+        "planifieCounter": 0,
+        "vu": true
       }
     },
     {
@@ -5623,7 +5785,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6QE5NJP25N8WEWSR03"
+        "HW_ID": "HW-01K77WPE6QE5NJP25N8WEWSR03",
+        "planifieCounter": 0
       }
     },
     {
@@ -5723,7 +5886,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6R9A1BAASW9SGFA97P"
+        "HW_ID": "HW-01K77WPE6R9A1BAASW9SGFA97P",
+        "planifieCounter": 1
       }
     },
     {
@@ -5748,7 +5912,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6RX8ZV4MNNEZ6QAR1B"
+        "HW_ID": "HW-01K77WPE6RX8ZV4MNNEZ6QAR1B",
+        "planifieCounter": 1
       }
     },
     {
@@ -5773,7 +5938,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": "Mosquée malékite construite au 20ème siècle",
-        "HW_ID": "HW-01K77WPE6RHDAFAXAA92EFT8GY"
+        "HW_ID": "HW-01K77WPE6RHDAFAXAA92EFT8GY",
+        "planifieCounter": 1
       }
     },
     {
@@ -5898,32 +6064,10 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6RQNBBQXWYACNJTRAC"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          10.893311,
-          33.784959
-        ]
-      },
-      "properties": {
-        "Nom du site FR": "Mosquée El Chehoud",
-        "Nom du site arabe": "مسجد",
-        "Catégorie": "Mosquée",
-        "Zone": "El May",
-        "Coordonnées GPS": "33.784959, 10.893311",
-        "Latitude": 33.784959,
-        "Longitude": 10.893311,
-        "Description": "Nom provisoire, basé sur le lieu-dit. Située à Robbana. Infos à rechercher.",
-        "Source": null,
-        "Temps de visite": null,
-        "Prix d'entrée": null,
-        "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6RXAVJ2QSRYR7DPF76"
+        "HW_ID": "HW-01K77WPE6RQNBBQXWYACNJTRAC",
+        "planifieCounter": 0,
+        "vu": true,
+        "photos": []
       }
     },
     {
@@ -5948,7 +6092,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6RN50H0B51NPN1GECK"
+        "HW_ID": "HW-01K77WPE6RN50H0B51NPN1GECK",
+        "planifieCounter": 1
       }
     },
     {
@@ -6048,7 +6193,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6SYZ3CNCV0GXBV0MYX"
+        "HW_ID": "HW-01K77WPE6SYZ3CNCV0GXBV0MYX",
+        "planifieCounter": 1
       }
     },
     {
@@ -6073,7 +6219,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": "Mosquée ? Marabout ? A voir sur place",
-        "HW_ID": "HW-01K77WPE6SFRMMS2GS11D6JXR5"
+        "HW_ID": "HW-01K77WPE6SFRMMS2GS11D6JXR5",
+        "planifieCounter": 1,
+        "vu": false
       }
     },
     {
@@ -6173,7 +6321,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-AGVY6BXAX7HLGFO3CKDXA9DCML"
+        "HW_ID": "HW-AGVY6BXAX7HLGFO3CKDXA9DCML",
+        "planifieCounter": 1
       }
     },
     {
@@ -6181,24 +6330,25 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          10.99044,
-          33.75989
+          10.990437269210817,
+          33.75993763630792
         ]
       },
       "properties": {
-        "Nom du site FR": "Mosquée El Qibli",
+        "Nom du site FR": "Mosquée Al-Hajar",
         "Nom du site arabe": "جامع القبلي",
         "Catégorie": "Mosquée",
         "Zone": "Sedouikech",
         "Coordonnées GPS": "33.75989000,10.99044000",
         "Latitude": 33.75989,
         "Longitude": 10.99044,
-        "Description": "Ruines d'un autre bâtiment tout proche visible sur OSM",
-        "Source": null,
+        "Description": "Mosquée dont il ne reste que peu de traces, proche de la mosquée Al-Qibli",
+        "Source": "",
         "Temps de visite": null,
-        "Prix d'entrée": null,
-        "Desc_wpt": null,
-        "HW_ID": "HW-PWQM8ZZC2LR7PF4UTX73MGTM21"
+        "Prix d'entrée": 0,
+        "Desc_wpt": "Quelques vestige de mosquée",
+        "HW_ID": "HW-PWQM8ZZC2LR7PF4UTX73MGTM21",
+        "planifieCounter": 1
       }
     },
     {
@@ -6223,7 +6373,9 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE67434E7DEZHRXH0XL60RGD"
+        "HW_ID": "HW-01KJABRN0J9FDDEKWKYWHQWE3P",
+        "planifieCounter": 0,
+        "vu": true
       }
     },
     {
@@ -6248,7 +6400,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE674DGFXSI4ZIDUXMN3HOGL"
+        "HW_ID": "HW-01KJABRN0KWM7Z2QZ124W3X09R",
+        "planifieCounter": 0
       }
     },
     {
@@ -6273,7 +6426,8 @@
         "Temps de visite": null,
         "Prix d'entrée": null,
         "Desc_wpt": null,
-        "HW_ID": "HW-01K77WPE6701ZTW3Z1PK130SE6VF73"
+        "HW_ID": "HW-01KJABRN0KCKZMYXY1DGZBH05D",
+        "planifieCounter": 0
       }
     },
     {
@@ -6286,7 +6440,7 @@
         ]
       },
       "properties": {
-        "HW_ID": "HW-PC-1769539691760",
+        "HW_ID": "HW-01KJABRN0MBB7C5ZJ2MQ5C1C9P",
         "Nom du site FR": "Restaurant Cobry",
         "Nom du site AR": "",
         "Catégorie": "Restaurant",
@@ -6303,11 +6457,12 @@
         ]
       },
       "properties": {
-        "HW_ID": "HW-PC-1769542364439",
+        "HW_ID": "HW-01KJABRN0N92W2MJEHBB2FZRBD",
         "Nom du site FR": "Chez Adel",
         "Nom du site AR": "",
         "Catégorie": "Restaurant",
-        "Zone": "Sedouikech"
+        "Zone": "Sedouikech",
+        "planifieCounter": 1
       }
     },
     {
@@ -6320,7 +6475,7 @@
         ]
       },
       "properties": {
-        "HW_ID": "HW-PC-1769542434217",
+        "HW_ID": "HW-01KJABRN0PV7PNQ4R065PS2AED",
         "Nom du site FR": "Chez Chouchou",
         "Nom du site AR": "",
         "Catégorie": "Restaurant",
@@ -6337,7 +6492,7 @@
         ]
       },
       "properties": {
-        "HW_ID": "HW-PC-1769612186183",
+        "HW_ID": "HW-01KJABRN0PYVYK79F7ERGCXBWC",
         "Nom du site FR": "Grillades Zammouri",
         "Nom du site AR": "",
         "Catégorie": "Restaurant",
@@ -6349,16 +6504,20 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          10.858751535415651,
-          33.877394804513656
+          10.858738124370577,
+          33.87735026737242
         ]
       },
       "properties": {
-        "HW_ID": "HW-PC-1769612491396",
+        "HW_ID": "HW-01KJABRN0QGX8HD03AXFE2BMA6",
         "Nom du site FR": "El Ghorfa",
         "Nom du site AR": "",
         "Catégorie": "Restaurant",
-        "Zone": "Houmt Souk"
+        "Zone": "Houmt Souk",
+        "lat": 33.87735026737242,
+        "lng": 10.858738124370577,
+        "vu": true,
+        "planifieCounter": 0
       }
     },
     {
@@ -6371,7 +6530,7 @@
         ]
       },
       "properties": {
-        "HW_ID": "HW-PC-1769614171212",
+        "HW_ID": "HW-01KJABRN0R0T3A8B9QPBDEQPQC",
         "Nom du site FR": "Le bistrot Djerba",
         "Nom du site AR": "",
         "Catégorie": "Restaurant",
@@ -6388,11 +6547,13 @@
         ]
       },
       "properties": {
-        "HW_ID": "HW-PC-1769614282535",
+        "HW_ID": "HW-01KJABRN0R791D3GHBDKJXNMXJ",
         "Nom du site FR": "El Ghorfa",
         "Nom du site AR": "",
         "Catégorie": "Restaurant",
-        "Zone": "Houmt Souk"
+        "Zone": "Houmt Souk",
+        "vu": true,
+        "planifieCounter": 0
       }
     },
     {
@@ -6405,7 +6566,7 @@
         ]
       },
       "properties": {
-        "HW_ID": "HW-PC-1769614412951",
+        "HW_ID": "HW-01KJABRN0RX2VPKBVVN7Y9ZMBX",
         "Nom du site FR": "Les palmiers",
         "Nom du site AR": "",
         "Catégorie": "Restaurant",
@@ -6423,7 +6584,7 @@
         ]
       },
       "properties": {
-        "HW_ID": "HW-PC-1769614572530",
+        "HW_ID": "HW-01KJABRN0S7BP3SE3QW1HR9ESV",
         "Nom du site FR": "Restaurant La Clémence",
         "Nom du site AR": "",
         "Catégorie": "Restaurant",
@@ -6441,7 +6602,7 @@
         ]
       },
       "properties": {
-        "HW_ID": "HW-PC-1769614959325",
+        "HW_ID": "HW-01KJABRN0SETE15NS313F7DYZQ",
         "Nom du site FR": "Café Restaurant Santorini",
         "Nom du site AR": "",
         "Catégorie": "Restaurant",
@@ -6459,11 +6620,13 @@
         ]
       },
       "properties": {
-        "HW_ID": "HW-PC-1769615185858",
+        "HW_ID": "HW-01KJABRN0TAY03FD4GKQFZFHAT",
         "Nom du site FR": "La paillot de pirate",
         "Nom du site AR": "",
         "Catégorie": "Restaurant",
-        "Zone": "Houmt Souk"
+        "Zone": "Houmt Souk",
+        "vu": true,
+        "planifieCounter": 0
       }
     },
     {
@@ -6476,7 +6639,7 @@
         ]
       },
       "properties": {
-        "HW_ID": "HW-PC-1769615329045",
+        "HW_ID": "HW-01KJABRN0TZR7K5FE84PDNW1QY",
         "Nom du site FR": "L'autre monde",
         "Nom du site AR": "",
         "Catégorie": "Restaurant",
@@ -6493,7 +6656,7 @@
         ]
       },
       "properties": {
-        "HW_ID": "HW-PC-1769615497253",
+        "HW_ID": "HW-01KJABRN0TRZMJTB37MH6N436C",
         "Nom du site FR": "Restaurant la lagune",
         "Nom du site AR": "",
         "Catégorie": "Restaurant",
@@ -6511,12 +6674,13 @@
         ]
       },
       "properties": {
-        "HW_ID": "HW-PC-1769616224738",
+        "HW_ID": "HW-01KJABRN0VFPFW41YCMJ2CX585",
         "Nom du site FR": "Restaurant Port D'Aghir",
         "Nom du site AR": "",
         "Catégorie": "Restaurant",
         "Zone": "Sedouikech",
-        "Description": "Restaurant de bord de plage, face à la mer"
+        "Description": "Restaurant de bord de plage, face à la mer",
+        "planifieCounter": 1
       }
     },
     {
@@ -6529,7 +6693,7 @@
         ]
       },
       "properties": {
-        "HW_ID": "HW-PC-1769616447744",
+        "HW_ID": "HW-01KJABRN0VWX5RQKYVPS634BND",
         "Nom du site FR": "Restaurant La Mamma",
         "Nom du site AR": "",
         "Catégorie": "Restaurant",
@@ -6546,11 +6710,457 @@
         ]
       },
       "properties": {
-        "HW_ID": "HW-PC-1769616725138",
+        "HW_ID": "HW-01KJABRN0V2VBHY19KANC5KK51",
         "Nom du site FR": "Restaurant Grill La Perla",
         "Nom du site AR": "",
         "Catégorie": "Restaurant",
         "Zone": "Taguermess"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.858215755912408,
+          33.877617948263875
+        ]
+      },
+      "properties": {
+        "Nom du site FR": "Café thé Baklawa",
+        "Catégorie": "Salon de thé",
+        "Zone": "Houmt Souk",
+        "HW_ID": "HW-01KJABRN0WMXW7CV3JQJJK9EAV",
+        "Description": "Ajouté via Rich Editor",
+        "planifieCounter": 1,
+        "vu": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.841127333516292,
+          33.87855468821014
+        ]
+      },
+      "properties": {
+        "Nom du site FR": "Mosquée Ben Mimoun",
+        "Catégorie": "Mosquée",
+        "Zone": "Houmt Souk",
+        "HW_ID": "HW-01KJABRN0W6KJP2MNXC0GWQJN6",
+        "Description": "Ajouté via Rich Editor",
+        "planifieCounter": 1,
+        "vu": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.842136591672897,
+          33.87950695174614
+        ]
+      },
+      "properties": {
+        "Nom du site FR": "Ancien atelier de tissage",
+        "Catégorie": "Culture et tradition",
+        "Zone": "Houmt Souk",
+        "HW_ID": "HW-01KJABRN0WBFCMMFBGZB582PRH",
+        "Description": "Ajouté via Rich Editor",
+        "planifieCounter": 1,
+        "vu": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.858654975891115,
+          33.87548525371795
+        ]
+      },
+      "properties": {
+        "Nom du site FR": "Marché aux poissons de Houmt Souk",
+        "Catégorie": "Commerce",
+        "Zone": "Houmt Souk",
+        "HW_ID": "HW-01KJABRN0XCGBFRH389WG2S71J",
+        "Description": "Ajouté via Rich Editor",
+        "planifieCounter": 1,
+        "vu": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.744851529598238,
+          33.720723389971724
+        ]
+      },
+      "properties": {
+        "Nom du site FR": "Restaurant MBAREK",
+        "Catégorie": "Restaurant",
+        "Zone": "Ajim",
+        "HW_ID": "HW-01KJABRN0XJDFFSBSRFDN4PGQ4",
+        "Description": "Ajouté via Rich Editor",
+        "planifieCounter": 2,
+        "incontournable": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.76678663492203,
+          33.7812942328873
+        ]
+      },
+      "properties": {
+        "Nom du site FR": "Mosquée El Fquira (Mezran)",
+        "Nom du site arabe": "جامع الفقيرة",
+        "Catégorie": "Mosquée",
+        "Zone": "El Groa",
+        "HW_ID": "HW-01KJABRN0XK418GNG8GH5KPT4A",
+        "Description": "Ajouté via Rich Editor",
+        "lat": 33.7812942328873,
+        "lng": 10.76678663492203,
+        "planifieCounter": 1,
+        "vu": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.991703271865847,
+          33.80739830042143
+        ]
+      },
+      "properties": {
+        "Nom du site FR": "La Poste de Midoun",
+        "Catégorie": "Taxi",
+        "Zone": "Midoun",
+        "HW_ID": "HW-01KJABRN0YD2SFB393HG9SRDGW",
+        "Description": "Ajouté via Rich Editor",
+        "planifieCounter": 1,
+        "vu": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.843874194703359,
+          33.8426735461855
+        ]
+      },
+      "properties": {
+        "Nom du site FR": "Mosquée Sidi Mbarak",
+        "Catégorie": "Mosquée",
+        "Zone": "Houmt Souk",
+        "HW_ID": "HW-01KJABRN0Y687FFD0EF2SYPZ3Q",
+        "Description": "Ajouté via Rich Editor"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.959853573615282,
+          33.76392958395882
+        ]
+      },
+      "properties": {
+        "Nom du site FR": "Mosquée Toghrouit",
+        "Catégorie": "Mosquée",
+        "Zone": "Sedouikech",
+        "HW_ID": "HW-01KJB1NZSEHQH5M3JRKS72CKRN",
+        "Description": "Ajouté via Rich Editor",
+        "planifieCounter": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.914542646022236,
+          33.79916714833331
+        ]
+      },
+      "properties": {
+        "Nom du site FR": "Mosquée El Djafline",
+        "Catégorie": "Mosquée",
+        "Zone": "El May",
+        "HW_ID": "HW-01KJM8X5EEAHXPBF1YNSEA19F1",
+        "Description": "Ajouté via Rich Editor"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.770022859969572,
+          33.71872346897096
+        ]
+      },
+      "properties": {
+        "Nom du site FR": "Mosquée Briguen",
+        "Catégorie": "Mosquée",
+        "Zone": "Ajim",
+        "HW_ID": "HW-01KJMJATZZZRP02QNDTWS3YVK1",
+        "Description": "Ajouté via Rich Editor"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.762771368026735,
+          33.70219792648904
+        ]
+      },
+      "properties": {
+        "Nom du site FR": "Les pêcheries modèles de Djerba",
+        "Catégorie": "Curiosité",
+        "Zone": "Ajim",
+        "HW_ID": "HW-01KJMJFS86CYM1JHB958Y33CZ0",
+        "Description": "Ajouté via Rich Editor"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.854438543319702,
+          33.82125957539374
+        ]
+      },
+      "properties": {
+        "Nom du site FR": "Djerbahood",
+        "Catégorie": "Curiosité",
+        "Zone": "Erriadh",
+        "Source": "https://fr.wikipedia.org/wiki/Djerbahood",
+        "HW_ID": "HW-01KJN6EEH9Z49AMGYJT621WG9N",
+        "Description": "Ajouté via Rich Editor"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.895234524013045,
+          33.77044644512249
+        ]
+      },
+      "properties": {
+        "Nom du site FR": "Mosquée Henchir",
+        "Catégorie": "Mosquée",
+        "Zone": "El May",
+        "HW_ID": "HW-01KJN81XT3Q98DN3NRHHD38D2Q",
+        "Description": "Ajouté via Rich Editor"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.836577713489534,
+          33.82040278197035
+        ]
+      },
+      "properties": {
+        "Nom du site FR": "Mosquée Medjine",
+        "Catégorie": "Mosquée",
+        "Zone": "Erriadh",
+        "HW_ID": "HW-01KJX5XSG18NC03E6900V170QX",
+        "Description": "Ajouté via Rich Editor"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.97166279626852,
+          33.758181788952335
+        ]
+      },
+      "properties": {
+        "Nom du site FR": "Mosquée Ibadite El Guebli",
+        "Catégorie": "Mosquée",
+        "Zone": "Sedouikech",
+        "HW_ID": "HW-01KJZ4D50T7NQJ187MJ21YDR20",
+        "Description": "Ajouté via Rich Editor"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.859861952803211,
+          33.81879349004515
+        ]
+      },
+      "properties": {
+        "Nom du site FR": "Arabesque",
+        "Catégorie": "Pâtisserie",
+        "Zone": "Erriadh",
+        "HW_ID": "HW-01KK1CD2CREMNC3CHCGC44PK80",
+        "Description": "Ajouté via Rich Editor"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.853474030156127,
+          33.82993045350589
+        ]
+      },
+      "properties": {
+        "Nom du site FR": "Mosquée de Taghdimus",
+        "Catégorie": "Mosquée",
+        "Zone": "Erriadh",
+        "HW_ID": "HW-01KK1CNPZR005431XS160BZ1C4",
+        "Description": "Ajouté via Rich Editor"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.827390776515733,
+          33.83429771914028
+        ]
+      },
+      "properties": {
+        "Nom du site FR": "Mosquée Al-Taqwa",
+        "Catégorie": "Mosquée",
+        "Zone": "Erriadh",
+        "HW_ID": "HW-01KK1CWX2YWAJSWA4NYT64CD4R",
+        "Description": "Ajouté via Rich Editor"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.82615065425977,
+          33.83403027422525
+        ]
+      },
+      "properties": {
+        "Nom du site FR": "Massoura",
+        "Catégorie": "Mosquée",
+        "Zone": "Erriadh",
+        "HW_ID": "HW-01KK1D2ZKZRKM1G6011V2WJ9BX",
+        "Description": "Ajouté via Rich Editor"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.804257094860079,
+          33.825125623614504
+        ]
+      },
+      "properties": {
+        "Nom du site FR": "Mosquée Bazim 2",
+        "Catégorie": "Mosquée",
+        "Zone": "El Groa",
+        "HW_ID": "HW-01KK1D9QR642904GDJN33MDHSK",
+        "Description": "Ajouté via Rich Editor"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.990231,
+          33.8055485
+        ]
+      },
+      "properties": {
+        "Nom du site FR": "Chez Moktar",
+        "Catégorie": "A définir",
+        "Zone": "Midoun",
+        "Description": "Créé sur le terrain",
+        "HW_ID": "HW-01KKEDXA9DTJXPB9DNY4EMVPR4",
+        "created_at": "2026-03-11T12:28:25.772Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.9775885,
+          33.795488
+        ]
+      },
+      "properties": {
+        "Nom du site FR": "Mosquée Errhama",
+        "Catégorie": "Mosquée",
+        "Zone": "Midoun",
+        "Description": "Créé sur le terrain",
+        "HW_ID": "HW-01KKEM62BHCM4RDBWTZR0QZR78",
+        "created_at": "2026-03-11T14:18:04.014Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.972655564546585,
+          33.81398157183997
+        ]
+      },
+      "properties": {
+        "Nom du site FR": "Marabout Marmoura",
+        "Catégorie": "Mosquée",
+        "Zone": "Midoun",
+        "HW_ID": "HW-01KKS462NFDJ7E80WSWZ9TK9R7",
+        "Description": "Ajouté via Rich Editor"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.990643799304964,
+          33.75990418754944
+        ]
+      },
+      "properties": {
+        "Nom du site FR": "Mosquée Al-Qibli",
+        "Catégorie": "Mosquée",
+        "Zone": "Sedouikech",
+        "HW_ID": "HW-01KKVHNCEZHNGRPZ5XGAF9V0N3",
+        "Description": "Ajouté via Rich Editor"
       }
     }
   ]
