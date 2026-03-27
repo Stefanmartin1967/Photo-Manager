@@ -1,5 +1,6 @@
 import { calculateHaversineDistance } from './utils.js';
 import { DEFAULT_GROUPING_RADIUS } from './constants.js';
+import { fetchOSMPlaceName } from './poiManager.js';
 
 let groups = [];
 const photoIdToGroup = new Map();
@@ -15,7 +16,7 @@ export function setGroupingRadius(radius) {
     groupingRadius = radius;
 }
 
-export function reorganizeAllPhotos(pois) {
+export async function reorganizeAllPhotos(pois) {
     const allPhotos = getAllPhotosFlat();
     // Reset custom names if they were auto-generated?
     // Actually, user might have renamed photos/groups.
@@ -25,7 +26,7 @@ export function reorganizeAllPhotos(pois) {
     groups = [];
     photoIdToGroup.clear();
     if (allPhotos.length > 0) {
-        addPhotos(allPhotos, pois);
+        await addPhotos(allPhotos, pois);
     }
 }
 
@@ -33,7 +34,16 @@ export function getGroups() {
     let groupCounter = 1;
     return groups.map(group => {
         const groupNum = String(groupCounter++).padStart(2, '0');
-        let baseName = group.customName || (group.type === 'POI' ? group.poi.name : 'Trajet');
+        let baseName = group.customName;
+        if (!baseName) {
+            if (group.type === 'POI') {
+                baseName = group.poi.name;
+            } else if (group.osmName) {
+                baseName = group.osmName;
+            } else {
+                baseName = 'Trajet';
+            }
+        }
 
         const photosWithNames = group.photos.map((photo, index) => {
             const photoNum = String(index + 1).padStart(2, '0');
@@ -115,12 +125,12 @@ export function clearAll() {
     setGroupingRadius(DEFAULT_GROUPING_RADIUS);
 }
 
-export function addPhotos(newPhotoObjects, pois) {
+export async function addPhotos(newPhotoObjects, pois) {
     // 1. Sort new photos by date
     newPhotoObjects.sort((a, b) => (a.date || 0) - (b.date || 0));
 
     // 2. Cluster into groups
-    const newGroups = clusterPhotos(newPhotoObjects, pois);
+    const newGroups = await clusterPhotos(newPhotoObjects, pois);
 
     // 3. Merge into existing groups
     groups.push(...newGroups);
@@ -134,31 +144,41 @@ export function addPhotos(newPhotoObjects, pois) {
     mergeAdjacentGroups();
 }
 
-function clusterPhotos(photos, pois) {
+async function clusterPhotos(photos, pois) {
     const clusters = [];
     if (photos.length === 0) return clusters;
 
     let currentGroup = null;
 
-    photos.forEach(photo => {
+    for (const photo of photos) {
         const nearest = findNearestPOI(photo.lat, photo.lon, pois);
         const type = nearest ? 'POI' : 'TRAJET';
+
+        let osmName = null;
+        if (type === 'TRAJET' && photo.lat && photo.lon) {
+            osmName = await fetchOSMPlaceName(photo.lat, photo.lon);
+        }
 
         let sameGroup = false;
         if (currentGroup && currentGroup.type === type) {
             if (type === 'TRAJET') {
-                // For 'TRAJET', check distance with the last photo in the group
+                // If the OSM name differs (and neither is null), they should ideally be in different groups.
+                // But we mainly group by distance for TRAJET. Let's still use distance as primary metric.
                 const lastPhoto = currentGroup.photos[currentGroup.photos.length - 1];
                 if (lastPhoto && lastPhoto.lat != null && lastPhoto.lon != null && photo.lat != null && photo.lon != null) {
                     const dist = calculateHaversineDistance(lastPhoto.lat, lastPhoto.lon, photo.lat, photo.lon);
-                    // Only group them together if the distance is within groupingRadius
-                    // or if calculateHaversineDistance returns NaN (failsafe)
-                    if (isNaN(dist) || dist <= groupingRadius) {
+                    // Group if within radius OR if they have the exact same OSM name and are adjacent.
+                    if ((isNaN(dist) || dist <= groupingRadius) && currentGroup.osmName === osmName) {
+                        sameGroup = true;
+                    } else if (currentGroup.osmName === osmName) {
+                        // Keep them together if they are the same location name, even if slightly further.
                         sameGroup = true;
                     }
                 } else {
-                    // If either photo lacks coordinates, group them together to avoid excessive fragmentation
-                    sameGroup = true;
+                    // If either lacks coords, group them
+                    if (currentGroup.osmName === osmName) {
+                       sameGroup = true;
+                    }
                 }
             } else {
                 // Same POI?
@@ -175,13 +195,14 @@ function clusterPhotos(photos, pois) {
                 id: 'g-' + generateId(),
                 type: type,
                 poi: nearest, // null if Trajet
+                osmName: osmName,
                 customName: null,
                 photos: [photo]
             };
             clusters.push(currentGroup);
         }
         photoIdToGroup.set(photo.id, currentGroup);
-    });
+    }
 
     return clusters;
 }
@@ -214,9 +235,9 @@ function mergeAdjacentGroups() {
         let canMerge = false;
         if (curr.type === next.type) {
              if (curr.type === 'TRAJET') {
-                 if (!curr.customName && !next.customName) {
+                 if (!curr.customName && !next.customName && curr.osmName === next.osmName) {
                      // Only merge if the last photo of the current group and the first photo of the next group
-                     // are close enough (within groupingRadius).
+                     // are close enough (within groupingRadius) AND they have the same OSM name.
                      const lastPhoto = curr.photos[curr.photos.length - 1];
                      const firstPhotoNext = next.photos[0];
 
@@ -302,7 +323,10 @@ export function extractToTrajet(photoId) {
 
 export function renameGroup(groupId, newName) {
     const g = groups.find(g => g.id === groupId);
-    if (g) g.customName = newName;
+    if (g) {
+        // If the new name is empty or null, we revert to default by setting customName to null
+        g.customName = (newName && typeof newName === 'string' && newName.trim() !== '') ? newName : null;
+    }
 }
 
 export function renamePhoto(photoId, newName) {

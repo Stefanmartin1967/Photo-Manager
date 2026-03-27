@@ -73,7 +73,7 @@ import * as StorageManager from './modules/storageManager.js'
     const radiusMinus = document.getElementById('radiusMinus');
     const radiusPlus = document.getElementById('radiusPlus');
 
-    const updateRadius = (newVal) => {
+    const updateRadius = async (newVal) => {
         const val = parseInt(newVal);
         if (isNaN(val) || val < 0) return;
 
@@ -81,7 +81,7 @@ import * as StorageManager from './modules/storageManager.js'
         radiusInput.value = val;
 
         // Re-cluster
-        PhotoManager.reorganizeAllPhotos(POIManager.getPois());
+        await PhotoManager.reorganizeAllPhotos(POIManager.getPois());
         updateStateAndUI();
     };
 
@@ -89,18 +89,18 @@ import * as StorageManager from './modules/storageManager.js'
         // Init default
         radiusInput.value = PhotoManager.getGroupingRadius();
 
-        radiusMinus.onclick = () => {
+        radiusMinus.onclick = async () => {
             const current = parseInt(radiusInput.value) || 0;
-            updateRadius(Math.max(0, current - 50));
+            await updateRadius(Math.max(0, current - 50));
         };
 
-        radiusPlus.onclick = () => {
+        radiusPlus.onclick = async () => {
             const current = parseInt(radiusInput.value) || 0;
-            updateRadius(current + 50);
+            await updateRadius(current + 50);
         };
 
-        radiusInput.onchange = () => {
-            updateRadius(radiusInput.value);
+        radiusInput.onchange = async () => {
+            await updateRadius(radiusInput.value);
         };
     }
 
@@ -168,7 +168,7 @@ import * as StorageManager from './modules/storageManager.js'
                 newPhotos.push(photoObj);
             }
 
-            PhotoManager.addPhotos(newPhotos, POIManager.getPois());
+            await PhotoManager.addPhotos(newPhotos, POIManager.getPois());
             updateStateAndUI();
 
             e.target.value = ''; // Reset input

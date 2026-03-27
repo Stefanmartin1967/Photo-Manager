@@ -27,3 +27,54 @@ export function findNearestPOI(lat, lon) {
 export function getPois() {
     return pois;
 }
+
+const osmCache = new Map();
+
+export async function fetchOSMPlaceName(lat, lon) {
+    if (!lat || !lon) return null;
+
+    // Arrondir les coordonnées pour le cache (environ 100m de précision)
+    const cacheKey = `${lat.toFixed(3)},${lon.toFixed(3)}`;
+    if (osmCache.has(cacheKey)) {
+        return osmCache.get(cacheKey);
+    }
+
+    try {
+        const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=18&addressdetails=1`;
+
+        // Add a small delay to respect Nominatim's usage policy (max 1 request/sec)
+        // In a real app with many photos, we should ideally batch or queue these,
+        // but for now, simple caching + fetch should help.
+
+        const response = await fetch(url, {
+            headers: {
+                'User-Agent': 'DjerbaPhotoManager/1.0 (Contact: local)' // Required by Nominatim policy
+            }
+        });
+
+        if (!response.ok) {
+            console.warn(`OSM API error: ${response.status}`);
+            osmCache.set(cacheKey, null);
+            return null;
+        }
+
+        const data = await response.json();
+
+        if (data && data.address) {
+            // Extract the most relevant name
+            const addr = data.address;
+            const placeName = addr.amenity || addr.tourism || addr.historic || addr.leisure || addr.building || addr.road || addr.village || addr.town || addr.city || addr.suburb || null;
+
+            osmCache.set(cacheKey, placeName);
+            return placeName;
+        }
+
+        osmCache.set(cacheKey, null);
+        return null;
+
+    } catch (e) {
+        console.warn("Erreur Nominatim OSM:", e);
+        osmCache.set(cacheKey, null);
+        return null;
+    }
+}
