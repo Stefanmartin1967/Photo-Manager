@@ -30,6 +30,21 @@ export function getPois() {
 
 const osmCache = new Map();
 
+function getDistance(lat1, lon1, lat2, lon2) {
+    const R = 6371e3; // mètres
+    const p1 = lat1 * Math.PI/180;
+    const p2 = lat2 * Math.PI/180;
+    const dp = (lat2-lat1) * Math.PI/180;
+    const dl = (lon2-lon1) * Math.PI/180;
+
+    const a = Math.sin(dp/2) * Math.sin(dp/2) +
+            Math.cos(p1) * Math.cos(p2) *
+            Math.sin(dl/2) * Math.sin(dl/2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+    return R * c;
+}
+
 export async function fetchOSMPlaceName(lat, lon) {
     if (!lat || !lon) return null;
 
@@ -40,16 +55,27 @@ export async function fetchOSMPlaceName(lat, lon) {
     }
 
     try {
-        const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=18&addressdetails=1`;
+        // Use Overpass API to find named POIs within 50 meters
+        const query = `
+[out:json];
+(
+  nwr(around:50, ${lat}, ${lon})["name"]["tourism"];
+  nwr(around:50, ${lat}, ${lon})["name"]["historic"];
+  nwr(around:50, ${lat}, ${lon})["name"]["amenity"];
+  nwr(around:50, ${lat}, ${lon})["name"]["leisure"];
+  nwr(around:50, ${lat}, ${lon})["name"]["building"];
+);
+out center;
+        `;
 
-        // Add a small delay to respect Nominatim's usage policy (max 1 request/sec)
-        // In a real app with many photos, we should ideally batch or queue these,
-        // but for now, simple caching + fetch should help.
+        const url = `https://overpass-api.de/api/interpreter`;
 
         const response = await fetch(url, {
+            method: 'POST',
             headers: {
-                'User-Agent': 'DjerbaPhotoManager/1.0 (Contact: local)' // Required by Nominatim policy
-            }
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `data=${encodeURIComponent(query)}`
         });
 
         if (!response.ok) {
@@ -60,20 +86,35 @@ export async function fetchOSMPlaceName(lat, lon) {
 
         const data = await response.json();
 
-        if (data && data.address) {
-            // Extract the most relevant name
-            const addr = data.address;
-            const placeName = addr.amenity || addr.tourism || addr.historic || addr.leisure || addr.building || addr.road || addr.village || addr.town || addr.city || addr.suburb || null;
+        if (data && data.elements && data.elements.length > 0) {
+            let nearestPoi = null;
+            let minDist = Infinity;
 
-            osmCache.set(cacheKey, placeName);
-            return placeName;
+            for (const el of data.elements) {
+                const elLat = el.lat || (el.center && el.center.lat);
+                const elLon = el.lon || (el.center && el.center.lon);
+
+                if (elLat && elLon) {
+                    const dist = getDistance(lat, lon, elLat, elLon);
+                    if (dist < minDist && el.tags && el.tags.name) {
+                        minDist = dist;
+                        nearestPoi = el;
+                    }
+                }
+            }
+
+            if (nearestPoi && nearestPoi.tags.name) {
+                const placeName = nearestPoi.tags.name;
+                osmCache.set(cacheKey, placeName);
+                return placeName;
+            }
         }
 
         osmCache.set(cacheKey, null);
         return null;
 
     } catch (e) {
-        console.warn("Erreur Nominatim OSM:", e);
+        console.warn("Erreur OSM Overpass:", e);
         osmCache.set(cacheKey, null);
         return null;
     }
