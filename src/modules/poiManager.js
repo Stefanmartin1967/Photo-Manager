@@ -4,7 +4,7 @@ let pois = [];
 
 export async function loadPOIs() {
     try {
-        const res = await fetch(import.meta.env.BASE_URL + 'djerba.geojson');
+        const res = await fetch('https://raw.githubusercontent.com/Stefanmartin1967/History-Walk-V1/main/public/djerba.geojson');
         const data = await res.json();
         pois = data.features.map(f => ({
             name: f.properties["Nom du site FR"] || "Sans nom",
