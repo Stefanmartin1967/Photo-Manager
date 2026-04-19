@@ -69,7 +69,7 @@ describe('PhotoManager - renameGroup', () => {
         // 2. Rename to null (revert)
         renameGroup(groupId, null);
         const revertedGroup = getGroups()[0];
-        assert.ok(revertedGroup.displayName.includes('Trajet') || revertedGroup.displayName.includes('Paris') || revertedGroup.displayName.includes("Hôtel-de-Ville"), 'Should revert to default name or OSM name');
+        assert.ok(revertedGroup.displayName.includes('Trajet'), 'Should revert to default name "Trajet"');
 
         // Clean up
         await reorganizeAllPhotos([]);
