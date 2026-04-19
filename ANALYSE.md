@@ -154,7 +154,7 @@ ImagePlus, Layers, ArrowRightLeft, Save, Share2, Minus, Plus, Trash2, Info, Rout
 
 ### ⚠️ Faiblesses
 - **Pas de gestion d'erreurs réseau** : GeoJSON 404 → silencieux `console.error` ([poiManager.js:14](src/modules/poiManager.js:14))
-- **Feature non implémentée** : bouton "Group" — UI réactive mais aucune logique ([main.js:266](src/main.js:266))
+- ~~**Bouton "Group" non implémenté**~~ — retiré (2026-04-19)
 - **Pas de typage** (TypeScript aurait aidé)
 - Code mort : commentaires de styles supprimés ([style.css:201](src/style.css:201))
 
@@ -200,12 +200,13 @@ on: push.main
 - [ ] **Implémenter ou retirer le bouton "Group"** ([main.js:266](src/main.js:266)) — Effort : 1-2h
 - [x] ~~Dédupliquer Haversine~~ — fait avec le retrait d'Overpass (2026-04-19)
 - [x] ~~Gestion d'erreurs Overpass~~ — Overpass retiré (2026-04-19)
+- [x] ~~Implémenter ou retirer le bouton "Group"~~ — bouton retiré (2026-04-19)
 
 ### 🟠 Tier 2 — UX / Bug fixes
 - [x] ~~Logique merge `osmName === null`~~ — caduc, plus d'osmName (2026-04-19)
-- [ ] Optimiser re-render galerie (diffing DOM ou virtual scroll) — Effort : 2-4h
-- [ ] Fallback `file.lastModified` si EXIF date manquante — Effort : 30min
-- [ ] Web Worker pour HEIC conversion (non-bloquant + progress) — Effort : 2h
+- [x] ~~Optimiser re-render galerie~~ — targeted updates pour les renames, full re-render uniquement pour les changements structurels (2026-04-19)
+- [x] ~~Fallback `file.lastModified` si EXIF date manquante~~ — fait (2026-04-19)
+- [x] ~~Web Worker pour HEIC conversion~~ — worker lazy + compteur de progression + fallback (2026-04-19)
 
 ### 🟢 Tier 3 — Features
 - [ ] Carte interactive Leaflet avec pins POI cliquables — Effort : 3-5h
