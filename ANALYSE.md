@@ -206,7 +206,7 @@ on: push.main
 - [x] ~~Logique merge `osmName === null`~~ — caduc, plus d'osmName (2026-04-19)
 - [x] ~~Optimiser re-render galerie~~ — targeted updates pour les renames, full re-render uniquement pour les changements structurels (2026-04-19)
 - [x] ~~Fallback `file.lastModified` si EXIF date manquante~~ — fait (2026-04-19)
-- [ ] Web Worker pour HEIC conversion (non-bloquant + progress) — Effort : 2h
+- [x] ~~Web Worker pour HEIC conversion~~ — worker lazy + compteur de progression + fallback (2026-04-19)
 
 ### 🟢 Tier 3 — Features
 - [ ] Carte interactive Leaflet avec pins POI cliquables — Effort : 3-5h

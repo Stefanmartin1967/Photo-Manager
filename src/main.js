@@ -1,6 +1,5 @@
 import './style.css'
 import exifr from 'exifr'
-import heic2any from 'heic2any'
 import { createIcons, ImagePlus, ArrowRightLeft, Save, Share2, Minus, Plus, Trash2 } from 'lucide'
 import * as POIManager from './modules/poiManager.js'
 import * as PhotoManager from './modules/photoManager.js'
@@ -110,6 +109,34 @@ import * as StorageManager from './modules/storageManager.js'
     // 5. Gestion des photos (Input)
     const photoInput = document.getElementById('photoInput');
     const addPhotoBtn = document.getElementById('addPhotoBtn');
+    const heicProgressEl = document.getElementById('heic-progress');
+
+    const isHeic = (filename) => /\.(heic|heif)$/i.test(filename);
+
+    // Lazy worker — créé uniquement si des fichiers HEIC sont importés
+    let heicWorker = null;
+    let workerMsgId = 0;
+    const workerCallbacks = new Map();
+
+    const getHeicWorker = () => {
+        if (!heicWorker) {
+            heicWorker = new Worker(new URL('./workers/heicWorker.js', import.meta.url), { type: 'module' });
+            heicWorker.onmessage = ({ data: { id, blob, error } }) => {
+                const resolve = workerCallbacks.get(id);
+                if (resolve) {
+                    workerCallbacks.delete(id);
+                    resolve(error ? null : blob);
+                }
+            };
+        }
+        return heicWorker;
+    };
+
+    const convertHeicViaWorker = (file) => new Promise((resolve) => {
+        const id = ++workerMsgId;
+        workerCallbacks.set(id, resolve);
+        getHeicWorker().postMessage({ id, blob: file });
+    });
 
     if (addPhotoBtn && photoInput) {
         addPhotoBtn.onclick = () => photoInput.click();
@@ -120,8 +147,13 @@ import * as StorageManager from './modules/storageManager.js'
             const files = Array.from(e.target.files);
             const newPhotos = [];
 
-            // Add loading state or UI indicator if dealing with many HEIC files
-            const isHeic = (filename) => /\.(heic|heif)$/i.test(filename);
+            const heicFiles = files.filter(f => isHeic(f.name));
+            let heicDone = 0;
+
+            if (heicFiles.length > 0) {
+                heicProgressEl.textContent = `HEIC 0/${heicFiles.length}`;
+                heicProgressEl.style.display = 'inline';
+            }
 
             for (const file of files) {
                 let date = null;
@@ -130,8 +162,6 @@ import * as StorageManager from './modules/storageManager.js'
                 let displayBlob = null;
 
                 try {
-                    // Force reading GPS data to ensure mobile devices extract it correctly
-                    // Use ArrayBuffer to bypass potential Blob.slice issues on Android Chrome
                     const buffer = await file.arrayBuffer();
                     const data = await exifr.parse(buffer, {
                         tiff: true,
@@ -152,26 +182,22 @@ import * as StorageManager from './modules/storageManager.js'
                 if (!date) date = new Date(file.lastModified);
 
                 if (isHeic(file.name)) {
-                    try {
-                        const convertedBlob = await heic2any({
-                            blob: file,
-                            toType: "image/jpeg",
-                            quality: 0.8
-                        });
-
-                        // Handle potential array of blobs from heic2any
-                        displayBlob = Array.isArray(convertedBlob) ? convertedBlob[0] : convertedBlob;
-                    } catch (err) {
-                        console.warn("Erreur de conversion HEIC pour", file.name, err);
-                        // If conversion fails, we skip this file or use the original one,
-                        // but it won't be displayed properly.
+                    displayBlob = await convertHeicViaWorker(file);
+                    if (!displayBlob) {
+                        console.warn("Échec conversion HEIC pour", file.name);
+                        heicDone++;
+                        heicProgressEl.textContent = `HEIC ${heicDone}/${heicFiles.length}`;
                         continue;
                     }
+                    heicDone++;
+                    heicProgressEl.textContent = `HEIC ${heicDone}/${heicFiles.length}`;
                 }
 
                 const photoObj = PhotoManager.createPhotoObject(file, date, lat, lon, displayBlob);
                 newPhotos.push(photoObj);
             }
+
+            heicProgressEl.style.display = 'none';
 
             await PhotoManager.addPhotos(newPhotos, POIManager.getPois());
             updateStateAndUI();
