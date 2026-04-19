@@ -5,7 +5,45 @@ let groups = [];
 const photoIdToGroup = new Map();
 let groupingRadius = DEFAULT_GROUPING_RADIUS;
 
+const undoStack = [];
+const redoStack = [];
+const MAX_HISTORY = 20;
+
 const generateId = () => Math.random().toString(36).substr(2, 9);
+
+function takeSnapshot() {
+    return {
+        groupingRadius,
+        groups: groups.map(g => ({ ...g, photos: [...g.photos] }))
+    };
+}
+
+function applySnapshot(snapshot) {
+    groupingRadius = snapshot.groupingRadius;
+    groups = snapshot.groups;
+    photoIdToGroup.clear();
+    groups.forEach(g => g.photos.forEach(p => photoIdToGroup.set(p.id, g)));
+}
+
+export function pushUndoSnapshot() {
+    redoStack.length = 0;
+    undoStack.push(takeSnapshot());
+    if (undoStack.length > MAX_HISTORY) undoStack.shift();
+}
+
+export function undo() {
+    if (undoStack.length === 0) return false;
+    redoStack.push(takeSnapshot());
+    applySnapshot(undoStack.pop());
+    return true;
+}
+
+export function redo() {
+    if (redoStack.length === 0) return false;
+    undoStack.push(takeSnapshot());
+    applySnapshot(redoStack.pop());
+    return true;
+}
 
 export function getGroupingRadius() {
     return groupingRadius;
@@ -116,6 +154,8 @@ export function clearAll() {
     groups = [];
     photoIdToGroup.clear();
     setGroupingRadius(DEFAULT_GROUPING_RADIUS);
+    undoStack.length = 0;
+    redoStack.length = 0;
 }
 
 export async function addPhotos(newPhotoObjects, pois) {

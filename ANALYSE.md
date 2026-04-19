@@ -210,7 +210,7 @@ on: push.main
 
 ### 🟢 Tier 3 — Features
 - [ ] Carte interactive Leaflet avec pins POI cliquables — Effort : 3-5h
-- [ ] Historique undo/redo (Ctrl+Z / Ctrl+Y) — Effort : 2h
+- [x] ~~Historique undo/redo~~ — snapshot stack (max 20), Ctrl+Z / Ctrl+Y, guard contentEditable (2026-04-19)
 - [ ] Export metadata CSV/JSON — Effort : 1h
 
 ## Résumé global
