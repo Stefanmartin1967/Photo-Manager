@@ -259,7 +259,7 @@ import * as StorageManager from './modules/storageManager.js'
             const filesToShare = [];
 
             selectedImgs.forEach(img => {
-                const card = img.closest('.photo-card');
+                const card = img.closest('.hw-photo-card');
                 if (card) {
                     const photo = allPhotos.find(p => p.id === card.id);
                     if (photo && photo.file) {
