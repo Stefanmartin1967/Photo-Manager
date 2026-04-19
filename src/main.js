@@ -1,7 +1,7 @@
 import './style.css'
 import exifr from 'exifr'
 import heic2any from 'heic2any'
-import { createIcons, ImagePlus, Layers, ArrowRightLeft, Save, Share2, Minus, Plus, Trash2 } from 'lucide'
+import { createIcons, ImagePlus, ArrowRightLeft, Save, Share2, Minus, Plus, Trash2 } from 'lucide'
 import * as POIManager from './modules/poiManager.js'
 import * as PhotoManager from './modules/photoManager.js'
 import * as UIManager from './modules/uiManager.js'
@@ -13,7 +13,6 @@ import * as StorageManager from './modules/storageManager.js'
     createIcons({
         icons: {
             ImagePlus,
-            Layers,
             ArrowRightLeft,
             Save,
             Share2,
@@ -263,23 +262,5 @@ import * as StorageManager from './modules/storageManager.js'
         };
     }
 
-    // Group Button Logic (Toggle Visual Only for now as logic is missing)
-    const groupBtn = document.getElementById('groupBtn');
-    if (groupBtn) {
-        let isGrouped = false; // Default assumed state based on previous "OFF" text? Or maybe it meant "Currently OFF"?
-        // Original text: "Grouper par POI : OFF". Usually means current state is OFF.
-        // But code creates groups by POI by default in addPhotos.
-        // Let's assume it's just a placeholder for now.
-
-        groupBtn.onclick = () => {
-            isGrouped = !isGrouped;
-            // Update title
-            groupBtn.title = isGrouped ? "Grouper par POI : ON" : "Grouper par POI : OFF";
-            // Toggle visual state (e.g. opacity or color)
-            groupBtn.style.color = isGrouped ? 'var(--brand)' : 'inherit';
-
-            // Note: Actual logic to regroup is not implemented as it requires refactoring PhotoManager
-        };
-    }
 
 })();

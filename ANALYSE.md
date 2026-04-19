@@ -154,7 +154,7 @@ ImagePlus, Layers, ArrowRightLeft, Save, Share2, Minus, Plus, Trash2, Info, Rout
 
 ### ⚠️ Faiblesses
 - **Pas de gestion d'erreurs réseau** : GeoJSON 404 → silencieux `console.error` ([poiManager.js:14](src/modules/poiManager.js:14))
-- **Feature non implémentée** : bouton "Group" — UI réactive mais aucune logique ([main.js:266](src/main.js:266))
+- ~~**Bouton "Group" non implémenté**~~ — retiré (2026-04-19)
 - **Pas de typage** (TypeScript aurait aidé)
 - Code mort : commentaires de styles supprimés ([style.css:201](src/style.css:201))
 
@@ -200,6 +200,7 @@ on: push.main
 - [ ] **Implémenter ou retirer le bouton "Group"** ([main.js:266](src/main.js:266)) — Effort : 1-2h
 - [x] ~~Dédupliquer Haversine~~ — fait avec le retrait d'Overpass (2026-04-19)
 - [x] ~~Gestion d'erreurs Overpass~~ — Overpass retiré (2026-04-19)
+- [x] ~~Implémenter ou retirer le bouton "Group"~~ — bouton retiré (2026-04-19)
 
 ### 🟠 Tier 2 — UX / Bug fixes
 - [x] ~~Logique merge `osmName === null`~~ — caduc, plus d'osmName (2026-04-19)
