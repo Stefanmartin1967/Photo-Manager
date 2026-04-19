@@ -1,6 +1,5 @@
 import { calculateHaversineDistance } from './utils.js';
 import { DEFAULT_GROUPING_RADIUS } from './constants.js';
-import { fetchOSMPlaceName } from './poiManager.js';
 
 let groups = [];
 const photoIdToGroup = new Map();
@@ -36,13 +35,7 @@ export function getGroups() {
         const groupNum = String(groupCounter++).padStart(2, '0');
         let baseName = group.customName;
         if (!baseName) {
-            if (group.type === 'POI') {
-                baseName = group.poi.name;
-            } else if (group.osmName) {
-                baseName = group.osmName;
-            } else {
-                baseName = 'Trajet';
-            }
+            baseName = group.type === 'POI' ? group.poi.name : 'Trajet';
         }
 
         const photosWithNames = group.photos.map((photo, index) => {
@@ -154,37 +147,20 @@ async function clusterPhotos(photos, pois) {
         const nearest = findNearestPOI(photo.lat, photo.lon, pois);
         const type = nearest ? 'POI' : 'TRAJET';
 
-        let osmName = null;
-        if (type === 'TRAJET' && photo.lat && photo.lon) {
-            osmName = await fetchOSMPlaceName(photo.lat, photo.lon);
-        }
-
         let sameGroup = false;
         if (currentGroup && currentGroup.type === type) {
             if (type === 'TRAJET') {
-                // If the OSM name differs (and neither is null), they should ideally be in different groups.
-                // But we mainly group by distance for TRAJET. Let's still use distance as primary metric.
                 const lastPhoto = currentGroup.photos[currentGroup.photos.length - 1];
                 if (lastPhoto && lastPhoto.lat != null && lastPhoto.lon != null && photo.lat != null && photo.lon != null) {
                     const dist = calculateHaversineDistance(lastPhoto.lat, lastPhoto.lon, photo.lat, photo.lon);
-                    // Group if within radius OR if they have the exact same OSM name and are adjacent.
-                    if ((isNaN(dist) || dist <= groupingRadius) && currentGroup.osmName === osmName) {
-                        sameGroup = true;
-                    } else if (currentGroup.osmName === osmName) {
-                        // Keep them together if they are the same location name, even if slightly further.
+                    if (isNaN(dist) || dist <= groupingRadius) {
                         sameGroup = true;
                     }
                 } else {
-                    // If either lacks coords, group them
-                    if (currentGroup.osmName === osmName) {
-                       sameGroup = true;
-                    }
-                }
-            } else {
-                // Same POI?
-                if (currentGroup.poi.name === nearest.name) {
                     sameGroup = true;
                 }
+            } else if (currentGroup.poi.name === nearest.name) {
+                sameGroup = true;
             }
         }
 
@@ -194,8 +170,7 @@ async function clusterPhotos(photos, pois) {
             currentGroup = {
                 id: 'g-' + generateId(),
                 type: type,
-                poi: nearest, // null if Trajet
-                osmName: osmName,
+                poi: nearest,
                 customName: null,
                 photos: [photo]
             };
@@ -233,28 +208,21 @@ function mergeAdjacentGroups() {
         const next = groups[i+1];
 
         let canMerge = false;
-        if (curr.type === next.type) {
+        if (curr.type === next.type && !curr.customName && !next.customName) {
              if (curr.type === 'TRAJET') {
-                 if (!curr.customName && !next.customName && curr.osmName === next.osmName) {
-                     // Only merge if the last photo of the current group and the first photo of the next group
-                     // are close enough (within groupingRadius) AND they have the same OSM name.
-                     const lastPhoto = curr.photos[curr.photos.length - 1];
-                     const firstPhotoNext = next.photos[0];
+                 const lastPhoto = curr.photos[curr.photos.length - 1];
+                 const firstPhotoNext = next.photos[0];
 
-                     if (lastPhoto && firstPhotoNext && lastPhoto.lat != null && lastPhoto.lon != null && firstPhotoNext.lat != null && firstPhotoNext.lon != null) {
-                         const dist = calculateHaversineDistance(lastPhoto.lat, lastPhoto.lon, firstPhotoNext.lat, firstPhotoNext.lon);
-                         if (isNaN(dist) || dist <= groupingRadius) {
-                             canMerge = true;
-                         }
-                     } else {
-                         // If either group's boundary photo lacks coordinates, we merge them
+                 if (lastPhoto && firstPhotoNext && lastPhoto.lat != null && lastPhoto.lon != null && firstPhotoNext.lat != null && firstPhotoNext.lon != null) {
+                     const dist = calculateHaversineDistance(lastPhoto.lat, lastPhoto.lon, firstPhotoNext.lat, firstPhotoNext.lon);
+                     if (isNaN(dist) || dist <= groupingRadius) {
                          canMerge = true;
                      }
-                 }
-             } else {
-                 if (curr.poi.name === next.poi.name && !curr.customName && !next.customName) {
+                 } else {
                      canMerge = true;
                  }
+             } else if (curr.poi.name === next.poi.name) {
+                 canMerge = true;
              }
         }
 
