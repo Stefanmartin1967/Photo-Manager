@@ -204,7 +204,7 @@ on: push.main
 
 ### 🟠 Tier 2 — UX / Bug fixes
 - [x] ~~Logique merge `osmName === null`~~ — caduc, plus d'osmName (2026-04-19)
-- [ ] Optimiser re-render galerie (diffing DOM ou virtual scroll) — Effort : 2-4h
+- [x] ~~Optimiser re-render galerie~~ — targeted updates pour les renames, full re-render uniquement pour les changements structurels (2026-04-19)
 - [x] ~~Fallback `file.lastModified` si EXIF date manquante~~ — fait (2026-04-19)
 - [ ] Web Worker pour HEIC conversion (non-bloquant + progress) — Effort : 2h
 

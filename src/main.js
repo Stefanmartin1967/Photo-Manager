@@ -22,19 +22,20 @@ import * as StorageManager from './modules/storageManager.js'
         }
     });
 
-    // Debounce function to prevent hammering IndexedDB on every tiny UI change
     let saveTimeout = null;
-    const updateStateAndUI = () => {
-        const groupsToRender = PhotoManager.getGroups();
-        UIManager.renderGallery(groupsToRender);
-
+    const debouncedSave = () => {
         if (saveTimeout) clearTimeout(saveTimeout);
         saveTimeout = setTimeout(() => {
             StorageManager.saveState({
                 groups: PhotoManager.getRawGroups(),
                 groupingRadius: PhotoManager.getGroupingRadius()
             });
-        }, 1000); // Wait 1 second after last UI interaction before writing to DB
+        }, 1000);
+    };
+
+    const updateStateAndUI = () => {
+        UIManager.renderGallery(PhotoManager.getGroups());
+        debouncedSave();
     };
 
     // 1. Initialisation Thème
@@ -51,11 +52,14 @@ import * as StorageManager from './modules/storageManager.js'
         },
         onRenameGroup: (groupId, newName) => {
             PhotoManager.renameGroup(groupId, newName);
-            updateStateAndUI();
+            const group = PhotoManager.getGroups().find(g => g.id === groupId);
+            if (group) UIManager.updateGroupTitle(groupId, group.displayName);
+            debouncedSave();
         },
         onRenamePhoto: (photoId, newName) => {
             PhotoManager.renamePhoto(photoId, newName);
-            updateStateAndUI();
+            // DOM déjà mis à jour par l'utilisateur via contentEditable
+            debouncedSave();
         },
         onExtract: (photoId) => {
             PhotoManager.extractToTrajet(photoId);

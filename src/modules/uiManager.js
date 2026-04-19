@@ -387,6 +387,22 @@ export function closeCompareModal() {
     document.getElementById('compare-modal').style.display = 'none';
 }
 
+export function updateGroupTitle(groupId, displayName) {
+    const groupEl = galleryElement.querySelector(`[data-group-id="${groupId}"]`);
+    if (!groupEl) return;
+    const titleEl = groupEl.querySelector('.group-title');
+    if (titleEl && document.activeElement !== titleEl) titleEl.innerText = displayName;
+    const saveBtn = groupEl.querySelector('.save-group-btn');
+    if (saveBtn) saveBtn.title = `Enregistrer le groupe : ${displayName}`;
+}
+
+export function updatePhotoName(photoId, finalName) {
+    const card = document.getElementById(photoId);
+    if (!card) return;
+    const info = card.querySelector('.photo-info');
+    if (info && document.activeElement !== info) info.innerText = finalName;
+}
+
 function selectContent(element) {
     setTimeout(() => {
         const range = document.createRange();
