@@ -197,7 +197,7 @@ on: push.main
 ## 10. Plan d'amélioration priorisé
 
 ### 🔴 Tier 1 — Bloquants
-- [ ] **Implémenter ou retirer le bouton "Group"** ([main.js:266](src/main.js:266)) — Effort : 1-2h
+- [x] ~~Implémenter ou retirer le bouton "Group"~~ — retiré (2026-04-19)
 - [x] ~~Dédupliquer Haversine~~ — fait avec le retrait d'Overpass (2026-04-19)
 - [x] ~~Gestion d'erreurs Overpass~~ — Overpass retiré (2026-04-19)
 - [x] ~~Implémenter ou retirer le bouton "Group"~~ — bouton retiré (2026-04-19)
@@ -209,8 +209,8 @@ on: push.main
 - [x] ~~Web Worker pour HEIC conversion~~ — worker lazy + compteur de progression + fallback (2026-04-19)
 
 ### 🟢 Tier 3 — Features
-- [ ] Carte interactive Leaflet avec pins POI cliquables — Effort : 3-5h
-- [ ] Historique undo/redo (Ctrl+Z / Ctrl+Y) — Effort : 2h
+- [x] ~~Carte interactive Leaflet~~ — non pertinent, History Walk gère déjà la carte (2026-04-19)
+- [x] ~~Historique undo/redo~~ — snapshot stack (max 20), Ctrl+Z / Ctrl+Y, guard contentEditable (2026-04-19)
 - [ ] Export metadata CSV/JSON — Effort : 1h
 
 ## Résumé global

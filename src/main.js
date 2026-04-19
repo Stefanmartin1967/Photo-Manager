@@ -46,25 +46,29 @@ import * as StorageManager from './modules/storageManager.js'
     // 3. Initialisation UI et Restauration
     UIManager.initGallery('default-gallery', {
         onMove: (photoId, targetGroupId, newIndex) => {
+            PhotoManager.pushUndoSnapshot();
             PhotoManager.movePhoto(photoId, targetGroupId, newIndex);
             updateStateAndUI();
         },
         onRenameGroup: (groupId, newName) => {
+            PhotoManager.pushUndoSnapshot();
             PhotoManager.renameGroup(groupId, newName);
             const group = PhotoManager.getGroups().find(g => g.id === groupId);
             if (group) UIManager.updateGroupTitle(groupId, group.displayName);
             debouncedSave();
         },
         onRenamePhoto: (photoId, newName) => {
+            PhotoManager.pushUndoSnapshot();
             PhotoManager.renamePhoto(photoId, newName);
-            // DOM déjà mis à jour par l'utilisateur via contentEditable
             debouncedSave();
         },
         onExtract: (photoId) => {
+            PhotoManager.pushUndoSnapshot();
             PhotoManager.extractToTrajet(photoId);
             updateStateAndUI();
         },
         onDelete: (photoId) => {
+            PhotoManager.pushUndoSnapshot();
             PhotoManager.removePhoto(photoId);
             updateStateAndUI();
         }
@@ -79,10 +83,10 @@ import * as StorageManager from './modules/storageManager.js'
         const val = parseInt(newVal);
         if (isNaN(val) || val < 0) return;
 
+        PhotoManager.pushUndoSnapshot();
         PhotoManager.setGroupingRadius(val);
         radiusInput.value = val;
 
-        // Re-cluster
         await PhotoManager.reorganizeAllPhotos(POIManager.getPois());
         updateStateAndUI();
     };
@@ -199,6 +203,7 @@ import * as StorageManager from './modules/storageManager.js'
 
             heicProgressEl.style.display = 'none';
 
+            PhotoManager.pushUndoSnapshot();
             await PhotoManager.addPhotos(newPhotos, POIManager.getPois());
             updateStateAndUI();
 
@@ -294,5 +299,30 @@ import * as StorageManager from './modules/storageManager.js'
         };
     }
 
+    // Undo / Redo (Ctrl+Z / Ctrl+Y ou Ctrl+Shift+Z)
+    document.addEventListener('keydown', async (e) => {
+        // Ne pas interférer avec l'undo natif du navigateur dans les champs éditables
+        if (document.activeElement && document.activeElement.contentEditable === 'true') return;
+
+        const ctrl = e.ctrlKey || e.metaKey;
+        if (!ctrl) return;
+
+        const isUndo = !e.shiftKey && e.key === 'z';
+        const isRedo = e.key === 'y' || (e.shiftKey && e.key === 'z');
+
+        if (isUndo) {
+            e.preventDefault();
+            if (PhotoManager.undo()) {
+                if (radiusInput) radiusInput.value = PhotoManager.getGroupingRadius();
+                updateStateAndUI();
+            }
+        } else if (isRedo) {
+            e.preventDefault();
+            if (PhotoManager.redo()) {
+                if (radiusInput) radiusInput.value = PhotoManager.getGroupingRadius();
+                updateStateAndUI();
+            }
+        }
+    });
 
 })();
