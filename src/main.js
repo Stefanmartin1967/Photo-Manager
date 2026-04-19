@@ -145,6 +145,8 @@ import * as StorageManager from './modules/storageManager.js'
                     console.warn("Pas de métadonnées pour", file.name, err);
                 }
 
+                if (!date) date = new Date(file.lastModified);
+
                 if (isHeic(file.name)) {
                     try {
                         const convertedBlob = await heic2any({
